@@ -193,7 +193,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -235,6 +235,167 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/18/js/object/object%E2%80%8B_keys/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jacob Hsu">
+      <meta itemprop="description" content="Coding notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jacob Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/18/js/object/object%E2%80%8B_keys/" class="post-title-link" itemprop="url">Object​.keys()</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-04-18 13:23:22 / Modified: 20:57:00" itemprop="dateCreated datePublished" datetime="2021-04-18T13:23:22+08:00">2021-04-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object​.keys()</a></p>
+<p><a target="_blank" rel="noopener" href="https://jsbin.com/wurocegika/edit?js,console">https://jsbin.com/wurocegika/edit?js,console</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(arr)); <span class="comment">// console: [&#x27;0&#x27;, &#x27;1&#x27;, &#x27;2&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 類似陣列的物件</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="number">0</span>: <span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>: <span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>: <span class="string">&#x27;c&#x27;</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(obj)); <span class="comment">// console: [&#x27;0&#x27;, &#x27;1&#x27;, &#x27;2&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 擁有隨機 key 排序，類似陣列的物件</span></span><br><span class="line"><span class="keyword">var</span> an_obj = &#123; <span class="number">100</span>: <span class="string">&#x27;a&#x27;</span>, <span class="number">2</span>: <span class="string">&#x27;b&#x27;</span>, <span class="number">7</span>: <span class="string">&#x27;c&#x27;</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(an_obj)); <span class="comment">// console: [&#x27;2&#x27;, &#x27;7&#x27;, &#x27;100&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://jsbin.com/sidixofelo/edit?js,console">https://jsbin.com/sidixofelo/edit?js,console</a> </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> types = &#123;</span><br><span class="line">  status: <span class="string">&#x27;404&#x27;</span>,</span><br><span class="line">  users: <span class="string">&#x27;https&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getObj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.keys(types).forEach(<span class="function"><span class="params">type</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(type) <span class="comment">//  &quot;status&quot; &quot;users&quot;</span></span><br><span class="line">    <span class="keyword">const</span> camelCaseTypeRes = type + <span class="string">&#x27;Res&#x27;</span>;</span><br><span class="line">    getObj[type] = camelCaseTypeRes; </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getObj)</span><br><span class="line"><span class="comment">// [object Object] &#123;</span></span><br><span class="line"><span class="comment">//  status: &quot;statusRes&quot;,</span></span><br><span class="line"><span class="comment">//  users: &quot;usersRes&quot;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/06/js/object/create/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jacob Hsu">
+      <meta itemprop="description" content="Coding notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jacob Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/06/js/object/create/" class="post-title-link" itemprop="url">Object.concat()</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-04-06 13:23:22" itemprop="dateCreated datePublished" datetime="2021-04-06T13:23:22+08:00">2021-04-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-18 21:00:02" itemprop="dateModified" datetime="2021-04-18T21:00:02+08:00">2021-04-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><code>Object.concat()</code> 方法被用來合併兩個或多個陣列。此方法不會改變現有的陣列，回傳一個包含呼叫者陣列本身的值，作為代替的是回傳一個新陣列。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> array2 = [<span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> array3 = array1.concat(array2);</span><br><span class="line"><span class="comment">// const groupAll = [...array1, ...array2] // es6</span></span><br><span class="line"><span class="built_in">console</span>.log(array3);</span><br><span class="line"><span class="comment">// expected output: Array [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -324,7 +485,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/04/js/object/create/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/04/js/array/concat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -337,7 +498,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/04/js/object/create/" class="post-title-link" itemprop="url">Object.create()</a>
+          <a href="/2021/04/04/js/array/concat/" class="post-title-link" itemprop="url">Object.create()</a>
         </h2>
 
         <div class="post-meta-container">
@@ -347,10 +508,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-04-04 13:23:22 / Modified: 11:21:15" itemprop="dateCreated datePublished" datetime="2021-04-04T13:23:22+08:00">2021-04-04</time>
+      <time title="Created: 2021-04-04 13:23:22" itemprop="dateCreated datePublished" datetime="2021-04-04T13:23:22+08:00">2021-04-04</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-18 21:00:02" itemprop="dateModified" datetime="2021-04-18T21:00:02+08:00">2021-04-18</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -593,10 +760,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-04-02 22:22:13 / Modified: 22:37:51" itemprop="dateCreated datePublished" datetime="2021-04-02T22:22:13+08:00">2021-04-02</time>
+      <time title="Created: 2021-04-02 22:22:13" itemprop="dateCreated datePublished" datetime="2021-04-02T22:22:13+08:00">2021-04-02</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-18 21:00:02" itemprop="dateModified" datetime="2021-04-18T21:00:02+08:00">2021-04-18</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -623,6 +796,9 @@
 <p>上面代码中，<code>&lt;script&gt;</code>标签打开<code>defer</code>或<code>async</code>属性，脚本就会异步加载。渲染引擎遇到这一行命令，就会开始下载外部脚本，但不会等它下载和执行  </p>
 <h3 id="加载规则"><a href="#加载规则" class="headerlink" title="加载规则"></a>加载规则</h3><p><code>&lt;script type=&quot;module&quot; src=&quot;./foo.js&quot;&gt;&lt;/script&gt;</code>  </p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;module&quot;</span>&gt;</span><br><span class="line">  <span class="keyword">import</span> <span class="string">&#x27;./index.js&#x27;</span>;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="類陣列轉成純陣列"><a href="#類陣列轉成純陣列" class="headerlink" title="類陣列轉成純陣列"></a>類陣列轉成純陣列</h3><p><code>...</code> 展開</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 當看到陣列是屬於類陣列 方法不足時 可以透過展開形式 轉成純陣列</span></span><br><span class="line"><span class="keyword">const</span> doms = <span class="built_in">document</span>.querySelectorAll(<span class="string">&#x27;li&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(doms); <span class="comment">// 請轉為純陣列</span></span><br><span class="line"><span class="keyword">const</span> newDoms = [...doms]</span><br><span class="line"><span class="built_in">console</span>.log(newDoms)</span><br></pre></td></tr></table></figure>
 
       
     </div>

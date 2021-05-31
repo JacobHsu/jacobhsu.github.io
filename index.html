@@ -157,13 +157,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -197,6 +197,292 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/31/js/es6/es6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jacob Hsu">
+      <meta itemprop="description" content="Coding notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jacob Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/05/31/js/es6/es6/" class="post-title-link" itemprop="url">let 和 const</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-05-31 22:22:13 / Modified: 17:18:06" itemprop="dateCreated datePublished" datetime="2021-05-31T22:22:13+08:00">2021-05-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/es6/" itemprop="url" rel="index"><span itemprop="name">es6</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let 和 const"></a>let 和 const</h2><p>块级声明用于声明在指定块的作用域之外无法访问的变量。</p>
+<p>当在全局作用域中使用 var 声明的时候，会创建一个新的全局变量作为全局对象的属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.value); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>然而 let 和 const 不会：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> value = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.value); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="let-和-const-的区别"><a href="#let-和-const-的区别" class="headerlink" title="let 和 const 的区别"></a>let 和 const 的区别</h2><p>const 用于声明常量，其值一旦被设定不能再被修改，否则会报错。</p>
+<p>值得一提的是：const 声明<strong>不允许修改绑定，但允许修改值</strong>。这意味着当用 const 声明对象时：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">    value: <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 没有问题</span></span><br><span class="line">data.value = <span class="number">2</span>;</span><br><span class="line">data.num = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line">data = &#123;&#125;; <span class="comment">// Uncaught TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="临时死区"><a href="#临时死区" class="headerlink" title="临时死区"></a>临时死区</h2><p>临时死区(Temporal Dead Zone)，简写为 TDZ。</p>
+<p>let 和 const 声明的变量不会被提升到作用域顶部，如果在声明之前访问这些变量，会导致报错：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> value); <span class="comment">// Uncaught ReferenceError: Cannot access &#x27;value&#x27; before initialization</span></span><br><span class="line"><span class="keyword">let</span> value = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这是因为 JavaScript 引擎在扫描代码发现变量声明时，要么将它们提升到作用域顶部(遇到 var 声明)，要么将声明放在 TDZ 中(遇到 let 和 const 声明)。访问 TDZ 中的变量会触发运行时错误。只有执行过变量声明语句后，变量才会从 TDZ 中移出，然后方可访问。</p>
+<p>看似很好理解，不保证你不犯错：</p>
+<p>var value = “global”;</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例子1</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> value = <span class="string">&#x27;local&#x27;</span>;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> value = <span class="string">&#x27;local&#x27;</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>两个例子中，结果并不会打印 “global”，而是报错 <code>Uncaught ReferenceError: Cannot access &#39;value&#39; before initialization</code>，就是因为 TDZ 的缘故。</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>ES6 系列之 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903608316592141">let 和 const</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/25/js/string/queue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jacob Hsu">
+      <meta itemprop="description" content="Coding notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jacob Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/25/js/string/queue/" class="post-title-link" itemprop="url">隊列（Queue）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-04-25 13:23:22" itemprop="dateCreated datePublished" datetime="2021-04-25T13:23:22+08:00">2021-04-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-05-31 10:00:27" itemprop="dateModified" datetime="2021-05-31T10:00:27+08:00">2021-05-31</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="數據結構：隊列（Queue）"><a href="#數據結構：隊列（Queue）" class="headerlink" title="數據結構：隊列（Queue）"></a>數據結構：隊列（Queue）</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Queue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> items = []</span><br><span class="line">  <span class="built_in">this</span>.enqueue = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    items.push(e) <span class="comment">// 進隊</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">this</span>.dequeue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> items.shift() <span class="comment">// 出隊</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">this</span>.isEmpty = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> items.length === <span class="number">0</span> <span class="comment">// 是否是空隊</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">this</span>.front = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> items[<span class="number">0</span>] <span class="comment">// 獲取隊頭元素</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">this</span>.clear = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    items = [] <span class="comment">// 清空隊</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">this</span>.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> items.length <span class="comment">// 獲取隊列長度</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查找：從對頭開始查找，從時間複雜度為 O(n)<br>插入或刪除：進棧與出棧的時間複雜度為 O(1)</p>
+<h2 id="時間複雜度"><a href="#時間複雜度" class="headerlink" title="時間複雜度"></a>時間複雜度</h2><p>如果演算法中包含巢狀的迴圈，則基本語句通常是最內層的迴圈體，如果演算法中包含並列的迴圈，則將並列迴圈的時間複雜度相加。例如：</p>
+<p><code>for (i=1; i&lt;=n; i++)　　x++;</code><br><code>for (i=1; i&lt;=n; i++)　　for (j=1; j&lt;=n; j++)　　x++;</code></p>
+<p>第一個for迴圈的時間複雜度為<code>O(n)</code>，第二個for迴圈的時間複雜度為O(n2)，<br>則整個演算法的時間複雜度為O(n+n2)=O(n2)。</p>
+<p><code>Ο(1)</code>表示基本語句的執行次數是一個常數，一般來說，只要演算法中不存在迴圈語句，其時間複雜度就是O(1)</p>
+<p>常見的演算法時間複雜度由小到大依次為：</p>
+<blockquote>
+<p>O(1)＜O(log2n)＜O(n)＜O(nlog2n)＜O(n2)＜O(n3)＜…＜O(2n)＜O(n!)</p>
+</blockquote>
+<p>O(log2n)、O(n)、O(nlog2n)、O(n2)和O(n3)稱為<code>多項式時間</code><br>O(2n)和O(n!)稱為<code>指數時間</code>  </p>
+<h1 id="雙端隊列（Deque）"><a href="#雙端隊列（Deque）" class="headerlink" title="雙端隊列（Deque）"></a>雙端隊列（Deque）</h1><p>Deque 在原有隊列的基礎上擴充了：隊頭、隊尾都可以進隊出隊</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Deque</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> items = []</span><br><span class="line">  <span class="built_in">this</span>.addFirst = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    items.unshift(e) <span class="comment">// 方法會添加一個或多個元素至陣列的開頭，並且回傳陣列的新長度</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">this</span>.removeFirst = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> items.shift() <span class="comment">// 方法會移除並回傳陣列的第一個元素。此方法會改變陣列的長度</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">this</span>.addLast = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    items.push(e)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">this</span>.removeLast = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> items.pop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="經典的雙端隊列問題：翻轉字符串裡的單詞"><a href="#經典的雙端隊列問題：翻轉字符串裡的單詞" class="headerlink" title="經典的雙端隊列問題：翻轉字符串裡的單詞"></a>經典的雙端隊列問題：翻轉字符串裡的單詞</h2><p>輸入: “a good   example”<br>輸出: “example good a”<br>解釋: 如果兩個單詞間有多餘的空格，將反轉後單詞間的空格減少到只含一個。</p>
+<p>說明：</p>
+<p>無空格字符構成一個單詞。<br>輸入字符串可以在前面或者後面包含多餘的空格，但是反轉後的字符不能包括。<br>如果兩個單詞間有多餘的空格，將反轉後單詞間的空格減少到只含一個。  </p>
+<p>解題思路：使用雙端隊列解題</p>
+<p>首先去除字符串左右空格<br>逐個讀取字符串中的每個單詞，依次放入雙端隊列的對頭<br>再將隊列轉換成字符串輸出（已空格為分隔符）  </p>
+<p><img src="https://i.imgur.com/8FYQBqO.png" alt="Alt Deque" title="Deque"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reverseWords = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> left = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> right = s.length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> queue = []</span><br><span class="line">    <span class="keyword">let</span> word = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="comment">// 首先去除字符串左右空格  </span></span><br><span class="line">    <span class="keyword">while</span> (s.charAt(left) === <span class="string">&#x27; &#x27;</span>) left ++ </span><br><span class="line">    <span class="keyword">while</span> (s.charAt(right) === <span class="string">&#x27; &#x27;</span>) right -- </span><br><span class="line">    <span class="comment">// 逐個讀取字符串中的每個單詞，依次放入雙端隊列的對頭  </span></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">        <span class="keyword">let</span> char = s.charAt(left)</span><br><span class="line">        <span class="keyword">if</span> (char === <span class="string">&#x27; &#x27;</span> &amp;&amp; word) &#123;</span><br><span class="line">            queue.unshift(word) <span class="comment">//  &quot;a&quot; -&gt; &quot;good&quot; -&gt; &quot;example&quot;</span></span><br><span class="line">            word = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (char !== <span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">            word += char</span><br><span class="line">        &#125;</span><br><span class="line">        left++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(word) <span class="comment">// &quot;a&quot; -&gt; &quot;good&quot; -&gt; &quot;example&quot;</span></span><br><span class="line">    queue.unshift(word) <span class="comment">// [&quot;a&quot;]  -&gt; [&quot;good&quot;, &quot;a&quot;] -&gt; [&quot;example&quot;, &quot;good&quot;, &quot;a&quot;]</span></span><br><span class="line">    <span class="built_in">console</span>.log(queue) <span class="comment">// [&quot;example&quot;, &quot;good&quot;, &quot;a&quot;]</span></span><br><span class="line">    <span class="keyword">return</span> queue.join(<span class="string">&#x27; &#x27;</span>) <span class="comment">// &quot;example good a&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> ans = reverseWords(<span class="string">&quot;a good   example&quot;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(ans) <span class="comment">// &quot;example good a&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="正则-JS-API"><a href="#正则-JS-API" class="headerlink" title="正则 + JS API"></a>正则 + JS API</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reverseWords = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s.trim().replace(<span class="regexp">/\s+/g</span>, <span class="string">&#x27; &#x27;</span>).split(<span class="string">&#x27; &#x27;</span>).reverse().join(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a target="_blank" rel="noopener" href="https://juejin.im/post/5eb2c1d76fb9a0435210a12c?utm_source=gold_browser_extension">前端进阶算法：一看就懂的队列及配套算法题</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/18/js/object/object%E2%80%8B_keys/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jacob Hsu">
+      <meta itemprop="description" content="Coding notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jacob Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/18/js/object/object%E2%80%8B_keys/" class="post-title-link" itemprop="url">Object​.keys()</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-04-18 13:23:22" itemprop="dateCreated datePublished" datetime="2021-04-18T13:23:22+08:00">2021-04-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-05-31 10:00:27" itemprop="dateModified" datetime="2021-05-31T10:00:27+08:00">2021-05-31</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object​.keys()</a></p>
+<p><a target="_blank" rel="noopener" href="https://jsbin.com/wurocegika/edit?js,console">https://jsbin.com/wurocegika/edit?js,console</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(arr)); <span class="comment">// console: [&#x27;0&#x27;, &#x27;1&#x27;, &#x27;2&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 類似陣列的物件</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="number">0</span>: <span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>: <span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>: <span class="string">&#x27;c&#x27;</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(obj)); <span class="comment">// console: [&#x27;0&#x27;, &#x27;1&#x27;, &#x27;2&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 擁有隨機 key 排序，類似陣列的物件</span></span><br><span class="line"><span class="keyword">var</span> an_obj = &#123; <span class="number">100</span>: <span class="string">&#x27;a&#x27;</span>, <span class="number">2</span>: <span class="string">&#x27;b&#x27;</span>, <span class="number">7</span>: <span class="string">&#x27;c&#x27;</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(an_obj)); <span class="comment">// console: [&#x27;2&#x27;, &#x27;7&#x27;, &#x27;100&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://jsbin.com/sidixofelo/edit?js,console">https://jsbin.com/sidixofelo/edit?js,console</a> </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> types = &#123;</span><br><span class="line">  status: <span class="string">&#x27;404&#x27;</span>,</span><br><span class="line">  users: <span class="string">&#x27;https&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getObj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.keys(types).forEach(<span class="function"><span class="params">type</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(type) <span class="comment">//  &quot;status&quot; &quot;users&quot;</span></span><br><span class="line">    <span class="keyword">const</span> camelCaseTypeRes = type + <span class="string">&#x27;Res&#x27;</span>;</span><br><span class="line">    getObj[type] = camelCaseTypeRes; </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getObj)</span><br><span class="line"><span class="comment">// [object Object] &#123;</span></span><br><span class="line"><span class="comment">//  status: &quot;statusRes&quot;,</span></span><br><span class="line"><span class="comment">//  users: &quot;usersRes&quot;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -732,7 +1018,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-06 15:34:54" itemprop="dateModified" datetime="2021-04-06T15:34:54+08:00">2021-04-06</time>
+        <time title="Modified: 2021-04-06 16:15:25" itemprop="dateModified" datetime="2021-04-06T16:15:25+08:00">2021-04-06</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -761,91 +1047,8 @@
 <h3 id="加载规则"><a href="#加载规则" class="headerlink" title="加载规则"></a>加载规则</h3><p><code>&lt;script type=&quot;module&quot; src=&quot;./foo.js&quot;&gt;&lt;/script&gt;</code>  </p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;module&quot;</span>&gt;</span><br><span class="line">  <span class="keyword">import</span> <span class="string">&#x27;./index.js&#x27;</span>;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/29/My-New-Post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jacob Hsu">
-      <meta itemprop="description" content="Coding notes">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jacob Hello World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/29/My-New-Post/" class="post-title-link" itemprop="url">My New Post</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-29 23:22:13" itemprop="dateCreated datePublished" datetime="2021-03-29T23:22:13+08:00">2021-03-29</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-06 15:34:54" itemprop="dateModified" datetime="2021-04-06T15:34:54+08:00">2021-04-06</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>增加文章分類 (Categories)<br><code>$ hexo new page categories</code></p>
-<p>接著修改剛剛產生的 source/categories/inex.md 成下面的樣子並儲存。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">title: categories</span><br><span class="line">date: <span class="number">2021</span>-<span class="number">03</span>-<span class="number">29</span> <span class="number">23</span>:<span class="number">24</span>:<span class="number">52</span></span><br><span class="line">type: <span class="string">&quot;categories&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>讓文章增加分類，只要在 categories 後面加入類別就可以了，記得要空格！</p>
-<p>以上修改完後，記得還要去主題配置的 menu 中把 categories 跟 tags 打開，這樣才能在側欄中看到喔！</p>
-<p>blog\node_modules\hexo-theme-next_config.yml</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  #home: / || fa fa-home</span><br><span class="line">  #about: <span class="regexp">/about/</span> || fa fa-user</span><br><span class="line">  tags: <span class="regexp">/tags/</span> || fa fa-tags</span><br><span class="line">  categories: <span class="regexp">/categories/</span> || fa fa-th</span><br><span class="line">  #archives: <span class="regexp">/archives/</span> || fa fa-archive</span><br></pre></td></tr></table></figure>
-
-
-<p>增加標籤 (tags)<br><code>$ hexo new page tags</code></p>
-<p>接著修改剛剛產生的 source/tags/inex.md 成下面的樣子並儲存。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">title: tags</span><br><span class="line">date: <span class="number">2021</span>-<span class="number">03</span>-<span class="number">29</span> <span class="number">23</span>:<span class="number">24</span>:<span class="number">52</span></span><br><span class="line">type: <span class="string">&quot;tags&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>讓文章增加標籤，只要在 tags  後面加入類別就可以了，記得要空格！</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 新的文章</span><br><span class="line">date: <span class="number">2020</span>-<span class="number">04</span>-<span class="number">02</span> <span class="number">12</span>:<span class="number">12</span>:<span class="number">57</span></span><br><span class="line">categories: 文章類別</span><br><span class="line">tags: 標籤_1 標籤_2</span><br></pre></td></tr></table></figure>
+<h3 id="類陣列轉成純陣列"><a href="#類陣列轉成純陣列" class="headerlink" title="類陣列轉成純陣列"></a>類陣列轉成純陣列</h3><p><code>...</code> 展開</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 當看到陣列是屬於類陣列 方法不足時 可以透過展開形式 轉成純陣列</span></span><br><span class="line"><span class="keyword">const</span> doms = <span class="built_in">document</span>.querySelectorAll(<span class="string">&#x27;li&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(doms); <span class="comment">// 請轉為純陣列</span></span><br><span class="line"><span class="keyword">const</span> newDoms = [...doms]</span><br><span class="line"><span class="built_in">console</span>.log(newDoms)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -864,6 +1067,9 @@
 
 
 
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
 <script>

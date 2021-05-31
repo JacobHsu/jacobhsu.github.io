@@ -23,21 +23,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
-<meta name="description" content="Object.concat() 方法被用來合併兩個或多個陣列。此方法不會改變現有的陣列，回傳一個包含呼叫者陣列本身的值，作為代替的是回傳一個新陣列。 123456const array1 &#x3D; [&amp;#x27;a&amp;#x27;, &amp;#x27;b&amp;#x27;, &amp;#x27;c&amp;#x27;];const array2 &#x3D; [&amp;#x27;d&amp;#x27;, &amp;#x27;e&amp;#x27;, &amp;#x27;f&amp;#x27">
+<meta name="description" content="let 和 const块级声明用于声明在指定块的作用域之外无法访问的变量。 当在全局作用域中使用 var 声明的时候，会创建一个新的全局变量作为全局对象的属性。 12var value &#x3D; 1;console.log(window.value); &#x2F;&#x2F; 1  然而 let 和 const 不会： 12let value &#x3D; 1;console.log(window.value); &#x2F;&#x2F; undef">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Object.concat()">
-<meta property="og:url" content="http://example.com/2021/04/06/js/object/create/index.html">
+<meta property="og:title" content="let 和 const">
+<meta property="og:url" content="http://example.com/2021/05/31/js/es6/es6/index.html">
 <meta property="og:site_name" content="Jacob Hello World">
-<meta property="og:description" content="Object.concat() 方法被用來合併兩個或多個陣列。此方法不會改變現有的陣列，回傳一個包含呼叫者陣列本身的值，作為代替的是回傳一個新陣列。 123456const array1 &#x3D; [&amp;#x27;a&amp;#x27;, &amp;#x27;b&amp;#x27;, &amp;#x27;c&amp;#x27;];const array2 &#x3D; [&amp;#x27;d&amp;#x27;, &amp;#x27;e&amp;#x27;, &amp;#x27;f&amp;#x27">
+<meta property="og:description" content="let 和 const块级声明用于声明在指定块的作用域之外无法访问的变量。 当在全局作用域中使用 var 声明的时候，会创建一个新的全局变量作为全局对象的属性。 12var value &#x3D; 1;console.log(window.value); &#x2F;&#x2F; 1  然而 let 和 const 不会： 12let value &#x3D; 1;console.log(window.value); &#x2F;&#x2F; undef">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-04-06T05:23:22.000Z">
-<meta property="article:modified_time" content="2021-04-06T07:50:17.381Z">
+<meta property="article:published_time" content="2021-05-31T14:22:13.000Z">
+<meta property="article:modified_time" content="2021-05-31T09:18:06.979Z">
 <meta property="article:author" content="Jacob Hsu">
 <meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2021/04/06/js/object/create/">
+<link rel="canonical" href="http://example.com/2021/05/31/js/es6/es6/">
 
 
 <script class="page-configurations">
@@ -49,7 +49,7 @@
     lang   : 'en'
   };
 </script>
-<title>Object.concat() | Jacob Hello World</title>
+<title>let 和 const | Jacob Hello World</title>
   
 
 
@@ -135,7 +135,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -148,6 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#let-%E5%92%8C-const"><span class="nav-number">1.</span> <span class="nav-text">let 和 const</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#let-%E5%92%8C-const-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">let 和 const 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%B4%E6%97%B6%E6%AD%BB%E5%8C%BA"><span class="nav-number">3.</span> <span class="nav-text">临时死区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -210,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/06/js/object/create/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/31/js/es6/es6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -223,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Object.concat()
+          let 和 const
         </h1>
 
         <div class="post-meta-container">
@@ -235,7 +236,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-04-06 13:23:22 / Modified: 15:50:17" itemprop="dateCreated datePublished" datetime="2021-04-06T13:23:22+08:00">2021-04-06</time>
+      <time title="Created: 2021-05-31 22:22:13 / Modified: 17:18:06" itemprop="dateCreated datePublished" datetime="2021-05-31T22:22:13+08:00">2021-05-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -243,7 +244,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+          <a href="/categories/es6/" itemprop="url" rel="index"><span itemprop="name">es6</span></a>
         </span>
     </span>
 
@@ -257,8 +258,28 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><code>Object.concat()</code> 方法被用來合併兩個或多個陣列。此方法不會改變現有的陣列，回傳一個包含呼叫者陣列本身的值，作為代替的是回傳一個新陣列。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> array2 = [<span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> array3 = array1.concat(array2);</span><br><span class="line"><span class="comment">// const groupAll = [...array1, ...array2] // es6</span></span><br><span class="line"><span class="built_in">console</span>.log(array3);</span><br><span class="line"><span class="comment">// expected output: Array [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]</span></span><br></pre></td></tr></table></figure>
+        <h2 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let 和 const"></a>let 和 const</h2><p>块级声明用于声明在指定块的作用域之外无法访问的变量。</p>
+<p>当在全局作用域中使用 var 声明的时候，会创建一个新的全局变量作为全局对象的属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.value); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>然而 let 和 const 不会：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> value = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.value); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="let-和-const-的区别"><a href="#let-和-const-的区别" class="headerlink" title="let 和 const 的区别"></a>let 和 const 的区别</h2><p>const 用于声明常量，其值一旦被设定不能再被修改，否则会报错。</p>
+<p>值得一提的是：const 声明<strong>不允许修改绑定，但允许修改值</strong>。这意味着当用 const 声明对象时：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">    value: <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 没有问题</span></span><br><span class="line">data.value = <span class="number">2</span>;</span><br><span class="line">data.num = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line">data = &#123;&#125;; <span class="comment">// Uncaught TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="临时死区"><a href="#临时死区" class="headerlink" title="临时死区"></a>临时死区</h2><p>临时死区(Temporal Dead Zone)，简写为 TDZ。</p>
+<p>let 和 const 声明的变量不会被提升到作用域顶部，如果在声明之前访问这些变量，会导致报错：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> value); <span class="comment">// Uncaught ReferenceError: Cannot access &#x27;value&#x27; before initialization</span></span><br><span class="line"><span class="keyword">let</span> value = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这是因为 JavaScript 引擎在扫描代码发现变量声明时，要么将它们提升到作用域顶部(遇到 var 声明)，要么将声明放在 TDZ 中(遇到 let 和 const 声明)。访问 TDZ 中的变量会触发运行时错误。只有执行过变量声明语句后，变量才会从 TDZ 中移出，然后方可访问。</p>
+<p>看似很好理解，不保证你不犯错：</p>
+<p>var value = “global”;</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例子1</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> value = <span class="string">&#x27;local&#x27;</span>;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> value = <span class="string">&#x27;local&#x27;</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>两个例子中，结果并不会打印 “global”，而是报错 <code>Uncaught ReferenceError: Cannot access &#39;value&#39; before initialization</code>，就是因为 TDZ 的缘故。</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>ES6 系列之 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903608316592141">let 和 const</a></p>
 
     </div>
 
@@ -275,14 +296,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/04/05/js/object/assign/" rel="prev" title="Object.assign()">
-                  <i class="fa fa-chevron-left"></i> Object.assign()
+                <a href="/2021/04/25/js/string/queue/" rel="prev" title="隊列（Queue）">
+                  <i class="fa fa-chevron-left"></i> 隊列（Queue）
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/04/06/hello-world/" rel="next" title="Hello World">
-                  Hello World <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

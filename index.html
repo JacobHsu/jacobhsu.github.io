@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -197,6 +197,105 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/22/js/letcode/add/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jacob Hsu">
+      <meta itemprop="description" content="Coding notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jacob Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/07/22/js/letcode/add/" class="post-title-link" itemprop="url">Promise add(...inputs)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-07-22 13:14:22 / Modified: 13:10:46" itemprop="dateCreated datePublished" datetime="2021-07-22T13:14:22+08:00">2021-07-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假設本地機器無法做加減乘除運算，需要通過遠程請求讓服務端來實現。</span></span><br><span class="line"><span class="comment">// 以加法為例，現有遠程API的模擬實現</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> addRemote = <span class="keyword">async</span> (a, b) =&gt; <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> resolve(a + b), <span class="number">1000</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 請實現本地的add方法，調用addRemote，能最優的實現輸入數字的加法。</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...inputs</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 你的實現</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 請用示例驗證運行結果:</span></span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result); <span class="comment">// 3</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add(<span class="number">3</span>, <span class="number">5</span>, <span class="number">2</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result); <span class="comment">// 10</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">let</span> res = <span class="number">0</span>;</span><br><span class="line"> <span class="keyword">if</span> (args.length &lt;= <span class="number">1</span>) <span class="keyword">return</span> res;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> args) &#123;</span><br><span class="line">    res = <span class="keyword">await</span> addRemote(res, item);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<script async src="//jsfiddle.net/JacobHsu/d13r4okg/1/embed/js/"></script>
+
+<p>優化加本地緩存</p>
+<script async src="//jsfiddle.net/JacobHsu/va1k2zdo/8/embed/js/"></script>
+
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/orphaned/Web/JavaScript/Reference/Global_Objects/Array/Reduce">Array.prototype.reduce()</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Promise鏈式調用版本</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">promiseChain, item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> promiseChain.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> addRemote(res, item);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;, <span class="built_in">Promise</span>.resolve(<span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如何將一組用Array包起來的Promise function“依序執行”</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> delayPromise = <span class="function"><span class="params">data</span> =&gt;</span></span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">Date</span>());</span><br><span class="line">      <span class="built_in">console</span>.log(data);</span><br><span class="line">      resolve(data);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> problem = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>].map(delayPromise)</span><br></pre></td></tr></table></figure>
+
+<p>上面的程式是有問題的，原因是因為map的實作原理是<strong>同步</strong>的將數值<strong>一個一個</strong>帶入delayPromise當中。<br>為了方便理解，我們可以把map的簡易實作看成下列的程式碼</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mapFunc = <span class="function">(<span class="params">mapper, dataArray</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> res = [];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> i <span class="keyword">in</span> dataArray) &#123;</span><br><span class="line">    res[i] = mapper(dataArray[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line">mapFunc(delayPromise, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>可以發現，先前的[1, 2, 4, 5].map(delayPromise)其實是一個用迴圈同步呼叫promise的實作，<strong>因此結果並非依序執行promise</strong></p>
+<p>那到底要怎麼讓promise依序執行呢？</p>
+<h3 id="用reduce將promise串接到Promise-resolve-後面"><a href="#用reduce將promise串接到Promise-resolve-後面" class="headerlink" title="用reduce將promise串接到Promise.resolve()後面"></a>用<code>reduce</code>將promise串接到Promise.resolve()後面</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>].reduce(</span><br><span class="line">  (p, current) =&gt; p.then(<span class="function">() =&gt;</span> delayPromise(current)),</span><br><span class="line">  <span class="built_in">Promise</span>.resolve()</span><br><span class="line">)</span><br><span class="line"><span class="comment">/* 等效於 </span></span><br><span class="line"><span class="comment">Promise.resolve()</span></span><br><span class="line"><span class="comment">.then(()=&gt;delayPromise(1))</span></span><br><span class="line"><span class="comment">.then(()=&gt;delayPromise(2))</span></span><br><span class="line"><span class="comment">.then(()=&gt;delayPromise(4))</span></span><br><span class="line"><span class="comment">.then(()=&gt;delayPromise(5))</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="用async-await去解決"><a href="#用async-await去解決" class="headerlink" title="用async/await去解決"></a>用async/await去解決</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> asyncWay = <span class="keyword">async</span>(dataArray) =&gt; &#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> i <span class="keyword">in</span> dataArray) &#123;</span><br><span class="line">    <span class="keyword">await</span> delayPromise(dataArray[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">asyncWay([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -964,91 +1063,6 @@
 <p>com.vue</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;formatData&#125; <span class="keyword">from</span> <span class="string">&#x27;common/js/date&#x27;</span></span><br><span class="line"><span class="comment">// import &#123;formatData, funB&#125; from &#x27;common/js/date&#x27;</span></span><br><span class="line"><span class="keyword">import</span> control <span class="keyword">from</span> <span class="string">&#x27;components/control&#x27;</span></span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/03/js/event/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jacob Hsu">
-      <meta itemprop="description" content="Coding notes">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jacob Hello World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/03/js/event/" class="post-title-link" itemprop="url">Event</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-04-03 13:22:13" itemprop="dateCreated datePublished" datetime="2021-04-03T13:22:13+08:00">2021-04-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-06 15:34:54" itemprop="dateModified" datetime="2021-04-06T15:34:54+08:00">2021-04-06</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>無限下拉加載圖片的頁面 綁定事件</p>
-<h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><p><a target="_blank" rel="noopener" href="https://jsbin.com/hajohit/edit?html,js,output">https://jsbin.com/hajohit/edit?html,js,output</a></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div1&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>a1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>a2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>a3<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>a4<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!--會新增更多a標籤--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>為所有a標籤 新增 點擊事件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通過事件冒泡 去上層綁定</span></span><br><span class="line"><span class="keyword">var</span> div1 = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;div1&#x27;</span>)</span><br><span class="line">div1.addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//監聽是div1 但target可以告知點擊從哪出發的</span></span><br><span class="line">  <span class="keyword">var</span> target = e.target</span><br><span class="line">  <span class="keyword">if</span>(target.nodeName ===<span class="string">&#x27;A&#x27;</span>) &#123;</span><br><span class="line">    alert(target.innerHTML); <span class="comment">//a1</span></span><br><span class="line">  &#125;  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
       
     </div>

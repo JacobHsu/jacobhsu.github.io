@@ -23,21 +23,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
   </script>
-<meta name="description" content="用來複製   Object.assign()被用來複製一個或多個物件自身所有可數的屬性到另一個目標物件。回傳的值為該目標物件。 Object.assign()只會從來源物件將自身可列舉的屬性複製到目標物件。   複製物件123var obj &#x3D; &amp;#123; a: 1 &amp;#125;;var copy &#x3D; Object.assign(&amp;#123;&amp;#125;, obj);console.log(co">
+<meta name="description" content="Closure 閉包是指有權訪問另一個函數作用域中的變量的函數當函數可以記住並訪問所在的詞法作用域時，就產生了閉包，即使函數是在當前詞法作用域之外執行。  12345678910function makeFunc() &amp;#123;  var name &#x3D; &quot;Mozilla&quot;;  function displayName() &amp;#123;    alert(name);  &amp;#1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Object.assign()">
-<meta property="og:url" content="http://example.com/2021/04/05/js/object/assign/index.html">
+<meta property="og:title" content="Closure">
+<meta property="og:url" content="http://example.com/2021/07/28/js/lexical/closure/index.html">
 <meta property="og:site_name" content="Jacob Hello World">
-<meta property="og:description" content="用來複製   Object.assign()被用來複製一個或多個物件自身所有可數的屬性到另一個目標物件。回傳的值為該目標物件。 Object.assign()只會從來源物件將自身可列舉的屬性複製到目標物件。   複製物件123var obj &#x3D; &amp;#123; a: 1 &amp;#125;;var copy &#x3D; Object.assign(&amp;#123;&amp;#125;, obj);console.log(co">
+<meta property="og:description" content="Closure 閉包是指有權訪問另一個函數作用域中的變量的函數當函數可以記住並訪問所在的詞法作用域時，就產生了閉包，即使函數是在當前詞法作用域之外執行。  12345678910function makeFunc() &amp;#123;  var name &#x3D; &quot;Mozilla&quot;;  function displayName() &amp;#123;    alert(name);  &amp;#1">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-04-05T05:23:22.000Z">
-<meta property="article:modified_time" content="2021-04-06T07:34:54.633Z">
+<meta property="article:published_time" content="2021-07-28T14:22:13.000Z">
+<meta property="article:modified_time" content="2021-07-29T03:03:06.172Z">
 <meta property="article:author" content="Jacob Hsu">
 <meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2021/04/05/js/object/assign/">
+<link rel="canonical" href="http://example.com/2021/07/28/js/lexical/closure/">
 
 
 <script class="page-configurations">
@@ -49,7 +49,7 @@
     lang   : 'en'
   };
 </script>
-<title>Object.assign() | Jacob Hello World</title>
+<title>Closure | Jacob Hello World</title>
   
 
 
@@ -148,7 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A4%87%E8%A3%BD%E7%89%A9%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">複製物件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%88%E4%BD%B5%E7%89%A9%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">合併物件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E7%9B%B8%E5%90%8C%E5%B1%AC%E6%80%A7%E6%99%82%E5%90%88%E4%BD%B5%E7%89%A9%E4%BB%B6%E5%8D%80%E6%AE%B5"><span class="nav-number">3.</span> <span class="nav-text">有相同屬性時合併物件區段</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure"><span class="nav-number">1.</span> <span class="nav-text">Closure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">2.</span> <span class="nav-text">References</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -211,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/05/js/object/assign/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/28/js/lexical/closure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Object.assign()
+          Closure
         </h1>
 
         <div class="post-meta-container">
@@ -235,14 +235,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-04-05 13:23:22" itemprop="dateCreated datePublished" datetime="2021-04-05T13:23:22+08:00">2021-04-05</time>
+      <time title="Created: 2021-07-28 22:22:13" itemprop="dateCreated datePublished" datetime="2021-07-28T22:22:13+08:00">2021-07-28</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-06 15:34:54" itemprop="dateModified" datetime="2021-04-06T15:34:54+08:00">2021-04-06</time>
+        <time title="Modified: 2021-07-29 11:03:06" itemprop="dateModified" datetime="2021-07-29T11:03:06+08:00">2021-07-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -250,7 +250,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+          <a href="/categories/es6/" itemprop="url" rel="index"><span itemprop="name">es6</span></a>
         </span>
     </span>
 
@@ -264,14 +264,24 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>用來複製  </p>
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign()</a>被用來複製一個或多個物件自身所有可數的屬性到另一個目標物件。回傳的值為該目標物件。</p>
-<p><code>Object.assign()</code>只會從來源物件將自身可列舉的<strong>屬性複製</strong>到目標物件。  </p>
-<h2 id="複製物件"><a href="#複製物件" class="headerlink" title="複製物件"></a>複製物件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> copy = <span class="built_in">Object</span>.assign(&#123;&#125;, obj);</span><br><span class="line"><span class="built_in">console</span>.log(copy); <span class="comment">// &#123; a: 1 &#125;</span></span><br></pre></td></tr></table></figure>
+        <h2 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h2><blockquote>
+<p>閉包是指有權訪問另一個函數作用域中的變量的函數<br>當函數可以記住並訪問所在的詞法作用域時，就產生了閉包，<br>即使函數是在當前詞法作用域之外執行。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&quot;Mozilla&quot;</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">displayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> displayName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myFunc = makeFunc();</span><br><span class="line">myFunc();</span><br></pre></td></tr></table></figure>
 
-<h2 id="合併物件"><a href="#合併物件" class="headerlink" title="合併物件"></a>合併物件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> o2 = &#123; <span class="attr">b</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> o3 = &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="built_in">Object</span>.assign(o1, o2, o3);</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(o1);  <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125;, 目標物件本身也被改變。</span></span><br></pre></td></tr></table></figure>
+<p>函式內的局部變數，只會在函式的執行期間存在。當 makeFunc() 執行完，你可能會預期 name 變數再也無法使用。</p>
+<p>若你執行這個程式碼，字串 Mozilla 會以 JavaScript alert 提示顯示出來。</p>
+<p>箇中理由和 JavaScript 函式的閉包有關。<br>閉包（Closure）是函式以及該函式被宣告時所在的作用域環境（lexical environment）的組合。</p>
+<p>在這個例子中，<code>myFunc</code> 是 displayName 在 makeFunc 運行時所建立的實例（instance）參照。  </p>
+<blockquote>
+<p>myFunc函數是在當前詞法作用域之外 displayName 可以記住並訪問所在的詞法作用域</p>
+</blockquote>
+<p><code>displayName</code> 的實例保有了其作用域環境的參照，作用域裡則內含 name 變數。因此，在調用 myFunc 時，<code> name 變數被保存、並能作它用。</code> 「Mozilla」一詞也因此傳給了 alert。</p>
+<blockquote>
+<p> myFunc 有權訪問另一個函數作用域 displayName 中的變量的函數</p>
+</blockquote>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Closures">閉包- JavaScript | MDN</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904161268482062?utm_source=gold_browser_extension">javascript 近乎神话般的概念：闭包</a></p>
 
-<h2 id="有相同屬性時合併物件區段"><a href="#有相同屬性時合併物件區段" class="headerlink" title="有相同屬性時合併物件區段"></a>有相同屬性時合併物件區段</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">1</span>, <span class="attr">c</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> o2 = &#123; <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> o3 = &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="built_in">Object</span>.assign(&#123;&#125;, o1, o2, o3);</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125;，屬性c為o3.c的值，最後一個出現的屬性c。</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -287,14 +297,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/04/04/js/array/concat/" rel="prev" title="Object.create()">
-                  <i class="fa fa-chevron-left"></i> Object.create()
+                <a href="/2021/07/22/js/letcode/add/" rel="prev" title="Promise add(...inputs)">
+                  <i class="fa fa-chevron-left"></i> Promise add(...inputs)
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/04/06/js/object/create/" rel="next" title="Object.concat()">
-                  Object.concat() <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

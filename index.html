@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -197,6 +197,102 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/28/js/lexical/closure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jacob Hsu">
+      <meta itemprop="description" content="Coding notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jacob Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/07/28/js/lexical/closure/" class="post-title-link" itemprop="url">Closure</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-07-28 22:22:13" itemprop="dateCreated datePublished" datetime="2021-07-28T22:22:13+08:00">2021-07-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-07-29 11:03:06" itemprop="dateModified" datetime="2021-07-29T11:03:06+08:00">2021-07-29</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/es6/" itemprop="url" rel="index"><span itemprop="name">es6</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h2><blockquote>
+<p>閉包是指有權訪問另一個函數作用域中的變量的函數<br>當函數可以記住並訪問所在的詞法作用域時，就產生了閉包，<br>即使函數是在當前詞法作用域之外執行。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">&quot;Mozilla&quot;</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">displayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> displayName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myFunc = makeFunc();</span><br><span class="line">myFunc();</span><br></pre></td></tr></table></figure>
+
+<p>函式內的局部變數，只會在函式的執行期間存在。當 makeFunc() 執行完，你可能會預期 name 變數再也無法使用。</p>
+<p>若你執行這個程式碼，字串 Mozilla 會以 JavaScript alert 提示顯示出來。</p>
+<p>箇中理由和 JavaScript 函式的閉包有關。<br>閉包（Closure）是函式以及該函式被宣告時所在的作用域環境（lexical environment）的組合。</p>
+<p>在這個例子中，<code>myFunc</code> 是 displayName 在 makeFunc 運行時所建立的實例（instance）參照。  </p>
+<blockquote>
+<p>myFunc函數是在當前詞法作用域之外 displayName 可以記住並訪問所在的詞法作用域</p>
+</blockquote>
+<p><code>displayName</code> 的實例保有了其作用域環境的參照，作用域裡則內含 name 變數。因此，在調用 myFunc 時，<code> name 變數被保存、並能作它用。</code> 「Mozilla」一詞也因此傳給了 alert。</p>
+<blockquote>
+<p> myFunc 有權訪問另一個函數作用域 displayName 中的變量的函數</p>
+</blockquote>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Closures">閉包- JavaScript | MDN</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904161268482062?utm_source=gold_browser_extension">javascript 近乎神话般的概念：闭包</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -975,94 +1071,6 @@
 
 <p>ex</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;...arr&#125; = <span class="built_in">Object</span>.create(&#123;<span class="attr">x</span>:<span class="number">1</span>&#125;) <span class="comment">// Object.create 將x掛在原形鏈上了 沒有掛在值上 &#123;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/04/js/export/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jacob Hsu">
-      <meta itemprop="description" content="Coding notes">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jacob Hello World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/04/js/export/" class="post-title-link" itemprop="url">export</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-04-04 13:22:13" itemprop="dateCreated datePublished" datetime="2021-04-04T13:22:13+08:00">2021-04-04</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-06 15:34:54" itemprop="dateModified" datetime="2021-04-06T15:34:54+08:00">2021-04-06</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="export"><a href="#export" class="headerlink" title="export"></a>export</h2><p>date.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">formatData</span>(<span class="params">data, fmt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="regexp">/(y+)/</span>.test(fmt)) &#123;</span><br><span class="line">        fmt = fmt.replace(<span class="built_in">RegExp</span>.$1, (data.getFullYear()+<span class="string">&#x27;&#x27;</span>).substr(<span class="number">4</span>-<span class="built_in">RegExp</span>.$1.length))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// return formDate(date, &#x27;yyyy-MM-dd hh:mm&#x27;)</span></span><br></pre></td></tr></table></figure>
-
-<p>control.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>com.vue</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;formatData&#125; <span class="keyword">from</span> <span class="string">&#x27;common/js/date&#x27;</span></span><br><span class="line"><span class="comment">// import &#123;formatData, funB&#125; from &#x27;common/js/date&#x27;</span></span><br><span class="line"><span class="keyword">import</span> control <span class="keyword">from</span> <span class="string">&#x27;components/control&#x27;</span></span><br></pre></td></tr></table></figure>
-
 
       
     </div>

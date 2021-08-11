@@ -157,18 +157,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -197,6 +197,129 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/10/http/caching/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jacob Hsu">
+      <meta itemprop="description" content="Coding notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jacob Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/08/10/http/caching/" class="post-title-link" itemprop="url">網頁 DOM 事件的效能優化：Debounce 和 Throttle</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-08-10 22:22:13" itemprop="dateCreated datePublished" datetime="2021-08-10T22:22:13+08:00">2021-08-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-08-11 10:13:25" itemprop="dateModified" datetime="2021-08-11T10:13:25+08:00">2021-08-11</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/HTTP/" itemprop="url" rel="index"><span itemprop="name">HTTP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>HTTP緩存</p>
+<p>就是將http請求獲取的頁面資源存儲在本地，之後再加載直接從緩存中獲取而不用請求服務器，從而響應更快。</p>
+<h2 id="強緩存"><a href="#強緩存" class="headerlink" title="強緩存"></a>強緩存</h2><p>第一次請求時，服務器把資源的過期時間通過響應頭中的Expires和Cache-Control兩個字段告訴瀏覽器，之後再請求這個資源的話，會判斷有沒有過期，沒有過期就直接拿來用，不向服務器發起請求，這就是強緩存</p>
+<p><code>Expires</code></p>
+<p>用來指定資源到期絕對時間，服務器響應時，添加在響應頭中。</p>
+<p><code>expires: Wed, 22 Nov 2021 08:41:00 GMT</code></p>
+<p>注意：如果服務器和瀏覽器端時間不一致的話可能導致失敗。比如現在時間是8月1，expires過期時間是8月2，客戶端把電腦時間改成了8月3，那就用不了這個緩存</p>
+<p><code>Cache-Control</code></p>
+<p>指定資源過期時間秒，如下，表示在這個請求正確返回後的300秒內，資源可以使用，否則過期</p>
+<p><code>cache-control:max-age=300</code></p>
+<h3 id="為什麼指定緩存過期時間需要兩個字段呢？"><a href="#為什麼指定緩存過期時間需要兩個字段呢？" class="headerlink" title="為什麼指定緩存過期時間需要兩個字段呢？"></a>為什麼指定緩存過期時間需要兩個字段呢？</h3><p>因為有的瀏覽器只認識 Cache-Control，有的瀏覽器不認識，不認識的情況下再找 Expires</p>
+<p>Expires 和 Cache-Control 的區別</p>
+<ul>
+<li><code>Expires</code> 是<code>HTTP/1.0</code>中的，<code>Cache-Control</code> 是<code>HTTP/1.1</code>中的;</li>
+<li><code>Expires</code> 是為了兼容，在不支持 HTTP/1.1 的情況下才會發生作用</li>
+<li>兩者同時存在的話 <code>Cache-Control</code> 優先級高於 <code>Expires</code>;</li>
+</ul>
+<h3 id="強緩存的缺點"><a href="#強緩存的缺點" class="headerlink" title="強緩存的缺點"></a>強緩存的缺點</h3><p>就是緩存過期之後，<strong>不管資源有沒有變化，都會重新發起請求，重新獲取資源</strong></p>
+<p>而我們希望的是在資源文件沒有更新的情況下，即使過期了也不重新獲取資源，繼續使用舊資源</p>
+<p>所以協商緩存它來了，在強緩存過期的情況下，再走協商緩存的流程，判斷文件有沒有更新</p>
+<h2 id="協商緩存"><a href="#協商緩存" class="headerlink" title="協商緩存"></a>協商緩存</h2><h3 id="Last-Modified-If-Modified-Since"><a href="#Last-Modified-If-Modified-Since" class="headerlink" title="Last-Modified/If-Modified-Since"></a>Last-Modified/If-Modified-Since</h3><p>第一次請求資源時，服務器除了會返回給瀏覽器上面說的過期時間，還會在響應頭添加 <code>Last-Modified</code> 字段，告訴瀏覽器該資源的最後修改時間</p>
+<p><code>last-modified: Fri, 27 Oct 2021 08:35:57 GMT</code> (服務器響應頭回)</p>
+<p>然後瀏覽器再次請求的時候就把這個時間再通過另一個字段<code>If-Modified-Since</code>，發送給服務器</p>
+<p><code>if-modified-since: Fri, 27 Oct 2021 08:35:57 GMT</code>  (瀏覽器再次請求送)</p>
+<p>服務器再把這兩個字段的時間對比，<br>如果是一樣的，就說明文件沒有被更新過，就返回<code>狀態碼304</code>和空響應體給瀏覽器，瀏覽器直接拿過期了的資源繼續使用即可；<br>如果對比不一樣說明資源有更新，就返回<code>狀態碼200</code>和新的資源</p>
+<p>所以說<code>Last-Modified/If-Modified-Since</code>它倆是成對的，是為了對比文件修改時間</p>
+<h3 id="Last-Modified-If-Modified-Since的缺點"><a href="#Last-Modified-If-Modified-Since的缺點" class="headerlink" title="Last-Modified/If-Modified-Since的缺點"></a>Last-Modified/If-Modified-Since的缺點</h3><p>如果本地打開了緩存文件，即使沒有對文件進行修改，但還是會造成<code>Last-Modified</code>被修改，服務器端不能命中緩存導致發送相同資源</p>
+<h3 id="ETag-If-None-Match"><a href="#ETag-If-None-Match" class="headerlink" title="ETag/If-None-Match"></a>ETag/If-None-Match</h3><p>第一次請求資源時，服務器除了會在響應頭上返回<code>Expires</code>、<code>Cache-Control</code>、<code>Last-Modified</code>，還在返回<code>Etag</code>字段，表示當前資源文件的一個唯一標識。這個標識符由服務器基於文件內容編碼生成，能<strong>精準感知文件的變化</strong>，只要文件內容不同，ETag就會重新生成</p>
+<p><code>etag: W/&quot;132489-1627839023000&quot;</code></p>
+<p>然後瀏覽器再次請求的時候就把這個文件標識 再通過另一個字段 <code>If-None-Match</code>，發送給服務器</p>
+<p><code>if-none-match: W/&quot;132489-1627839023000&quot;</code></p>
+<p>服務器再把這兩個字段的時間對比，<br>如果發現是一樣的，就說明文件沒有被更新過，就返回<code>狀態碼304</code>和空響應體給瀏覽器，瀏覽器直接拿過期了的資源繼續使用；<br>如果對比不一樣說明資源有更新，就返回<code>狀態碼200</code>和新的資源</p>
+<h3 id="Last-Modified-和-ETag-的區別"><a href="#Last-Modified-和-ETag-的區別" class="headerlink" title="Last-Modified 和 ETag 的區別"></a>Last-Modified 和 ETag 的區別</h3><ul>
+<li><code>Etag</code> 感知文件精準度要高於 Last-Modified</li>
+<li>同時使用時，服務器校驗優先級 Etag/If-None-Match</li>
+<li><code>Last-Modified</code> 性能上要優於 Etag，因為 Etag 生成過程中需要服務器付出額外開銷，會影響服務器端的性能，所以它並不能完全替代 Last-Modified，只能作為補充和強化</li>
+</ul>
+<h3 id="強緩存與協商緩存的區別"><a href="#強緩存與協商緩存的區別" class="headerlink" title="強緩存與協商緩存的區別"></a>強緩存與協商緩存的區別</h3><ul>
+<li>優先查找強緩存，沒有命中再查找協商緩存</li>
+<li>強緩存不發請求到服務器，所以有時候資源更新了瀏覽器還不知道，但是協商緩存會發請求到服務器，資源是否有更新，服務器肯定知道</li>
+<li>目前項目大多數使用緩存文案</li>
+</ul>
+<p>協商緩存一般存儲：<code>HTML</code><br>強緩存一般存儲：<code>css</code>, <code>image</code>, <code>js</code>，文件名帶上 <code>hash</code></p>
+<h4 id="References"><a href="#References" class="headerlink" title="References"></a>References</h4><p>為什麼第二次打開頁面快？<a target="_blank" rel="noopener" href="https://juejin.cn/post/6993358764481085453">吃透前端緩存</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -994,92 +1117,6 @@
           <p><code>Object.concat()</code> 方法被用來合併兩個或多個陣列。此方法不會改變現有的陣列，回傳一個包含呼叫者陣列本身的值，作為代替的是回傳一個新陣列。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> array2 = [<span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> array3 = array1.concat(array2);</span><br><span class="line"><span class="comment">// const groupAll = [...array1, ...array2] // es6</span></span><br><span class="line"><span class="built_in">console</span>.log(array3);</span><br><span class="line"><span class="comment">// expected output: Array [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]</span></span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/05/js/object/assign/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jacob Hsu">
-      <meta itemprop="description" content="Coding notes">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jacob Hello World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/05/js/object/assign/" class="post-title-link" itemprop="url">Object.assign()</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-04-05 13:23:22" itemprop="dateCreated datePublished" datetime="2021-04-05T13:23:22+08:00">2021-04-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-06 15:34:54" itemprop="dateModified" datetime="2021-04-06T15:34:54+08:00">2021-04-06</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>用來複製  </p>
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign()</a>被用來複製一個或多個物件自身所有可數的屬性到另一個目標物件。回傳的值為該目標物件。</p>
-<p><code>Object.assign()</code>只會從來源物件將自身可列舉的<strong>屬性複製</strong>到目標物件。  </p>
-<h2 id="複製物件"><a href="#複製物件" class="headerlink" title="複製物件"></a>複製物件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> copy = <span class="built_in">Object</span>.assign(&#123;&#125;, obj);</span><br><span class="line"><span class="built_in">console</span>.log(copy); <span class="comment">// &#123; a: 1 &#125;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="合併物件"><a href="#合併物件" class="headerlink" title="合併物件"></a>合併物件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> o2 = &#123; <span class="attr">b</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> o3 = &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="built_in">Object</span>.assign(o1, o2, o3);</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(o1);  <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125;, 目標物件本身也被改變。</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="有相同屬性時合併物件區段"><a href="#有相同屬性時合併物件區段" class="headerlink" title="有相同屬性時合併物件區段"></a>有相同屬性時合併物件區段</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">1</span>, <span class="attr">c</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> o2 = &#123; <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> o3 = &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="built_in">Object</span>.assign(&#123;&#125;, o1, o2, o3);</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123; a: 1, b: 2, c: 3 &#125;，屬性c為o3.c的值，最後一個出現的屬性c。</span></span><br></pre></td></tr></table></figure>
       
     </div>
 

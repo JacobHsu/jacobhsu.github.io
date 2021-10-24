@@ -157,18 +157,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -197,6 +197,91 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://jacobhsu.github.io/2021/10/25/tool/text_to_speech/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jacob Hsu">
+      <meta itemprop="description" content="Coding notes">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jacob Hello World">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/10/25/tool/text_to_speech/" class="post-title-link" itemprop="url">TTS（Text To Speech）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-10-25 22:22:13" itemprop="dateCreated datePublished" datetime="2021-10-25T22:22:13+08:00">2021-10-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-24 13:35:03" itemprop="dateModified" datetime="2021-10-24T13:35:03+08:00">2021-10-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/tool/" itemprop="url" rel="index"><span itemprop="name">tool</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在項目中需要對 ajax 請求返回的消息進行語音播報，str 為需要播報的信息（適應於錯誤信息語音提示等場景）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//語音播報</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">voiceAnnouncements</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 百度語音合成：或者使用新版地址https://tsn.baidu.com/text2audio</span></span><br><span class="line">  <span class="keyword">var</span> url =</span><br><span class="line">    <span class="string">&#x27;http://tts.baidu.com/text2audio?lan=zh&amp;ie=UTF-8&amp;spd=5&amp;text=&#x27;</span> +</span><br><span class="line">    <span class="built_in">encodeURI</span>(str);</span><br><span class="line">  <span class="keyword">var</span> n = <span class="keyword">new</span> Audio(url);</span><br><span class="line">  n.src = url;</span><br><span class="line">  n.play();</span><br><span class="line">&#125;</span><br><span class="line">voiceAnnouncements(<span class="string">`</span></span><br><span class="line"><span class="string">人有悲歡離合，月有陰晴圓缺，此事古難全。但願人長久，千里共嬋娟。</span></span><br><span class="line"><span class="string">`</span>);</span><br></pre></td></tr></table></figure>
+
+<p>參數解釋：</p>
+<p>lan：固定值 zh。語言選擇,目前只有中英文混合模式，填寫固定值 zh<br>ie:編碼方式<br>spd：語速，取值 0-9，默認為 5 中語速<br>text：合成的文本，使用 UTF-8 編碼。小於 512 個中文字或者英文數字。（文本在百度服務器內轉換為 GBK 後，長度必須小於 1024 字節）  </p>
+<p>ak1394 / <a target="_blank" rel="noopener" href="https://github.com/ak1394/react-native-tts">react-native-tts</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1091,86 +1176,6 @@
 <h3 id="正则-JS-API"><a href="#正则-JS-API" class="headerlink" title="正则 + JS API"></a>正则 + JS API</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reverseWords = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s.trim().replace(<span class="regexp">/\s+/g</span>, <span class="string">&#x27; &#x27;</span>).split(<span class="string">&#x27; &#x27;</span>).reverse().join(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a target="_blank" rel="noopener" href="https://juejin.im/post/5eb2c1d76fb9a0435210a12c?utm_source=gold_browser_extension">前端进阶算法：一看就懂的队列及配套算法题</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jacobhsu.github.io/2021/04/18/js/object/object%E2%80%8B_keys/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jacob Hsu">
-      <meta itemprop="description" content="Coding notes">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jacob Hello World">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/18/js/object/object%E2%80%8B_keys/" class="post-title-link" itemprop="url">Object​.keys()</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-04-18 13:23:22 / Modified: 20:57:00" itemprop="dateCreated datePublished" datetime="2021-04-18T13:23:22+08:00">2021-04-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object​.keys()</a></p>
-<p><a target="_blank" rel="noopener" href="https://jsbin.com/wurocegika/edit?js,console">https://jsbin.com/wurocegika/edit?js,console</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(arr)); <span class="comment">// console: [&#x27;0&#x27;, &#x27;1&#x27;, &#x27;2&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 類似陣列的物件</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="number">0</span>: <span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>: <span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>: <span class="string">&#x27;c&#x27;</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(obj)); <span class="comment">// console: [&#x27;0&#x27;, &#x27;1&#x27;, &#x27;2&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 擁有隨機 key 排序，類似陣列的物件</span></span><br><span class="line"><span class="keyword">var</span> an_obj = &#123; <span class="number">100</span>: <span class="string">&#x27;a&#x27;</span>, <span class="number">2</span>: <span class="string">&#x27;b&#x27;</span>, <span class="number">7</span>: <span class="string">&#x27;c&#x27;</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(an_obj)); <span class="comment">// console: [&#x27;2&#x27;, &#x27;7&#x27;, &#x27;100&#x27;]</span></span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://jsbin.com/sidixofelo/edit?js,console">https://jsbin.com/sidixofelo/edit?js,console</a> </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> types = &#123;</span><br><span class="line">  status: <span class="string">&#x27;404&#x27;</span>,</span><br><span class="line">  users: <span class="string">&#x27;https&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getObj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.keys(types).forEach(<span class="function"><span class="params">type</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(type) <span class="comment">//  &quot;status&quot; &quot;users&quot;</span></span><br><span class="line">    <span class="keyword">const</span> camelCaseTypeRes = type + <span class="string">&#x27;Res&#x27;</span>;</span><br><span class="line">    getObj[type] = camelCaseTypeRes; </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getObj)</span><br><span class="line"><span class="comment">// [object Object] &#123;</span></span><br><span class="line"><span class="comment">//  status: &quot;statusRes&quot;,</span></span><br><span class="line"><span class="comment">//  users: &quot;usersRes&quot;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 
       
     </div>

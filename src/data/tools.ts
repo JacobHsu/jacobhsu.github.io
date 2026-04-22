@@ -298,6 +298,12 @@ export const defaultCategories: Category[] = [
     color: "bg-cyan-600", // 青色 = 數據、網絡、流動
     bookmarks: [
       {
+        id: "similarweb",
+        title: "SimilarWeb",
+        url: "https://www.similarweb.com",
+        quotaInfo: "網站流量與競品分析，免費版有限制",
+      },
+      {
         id: "firecrawl",
         title: "Firecrawl",
         url: "https://firecrawl.dev/agent",
@@ -449,6 +455,49 @@ export const defaultCategories: Category[] = [
         title: "MAGI//ARCHIVE",
         url: "https://magi.ee",
         quotaInfo: "每日更新最新 AI 專案存儲庫",
+      },
+    ],
+  },
+  {
+    id: "ai-tools",
+    title: "AI Tools",
+    color: "bg-orange-500",
+    bookmarks: [
+      {
+        id: "theresanaiforthat",
+        title: "There's An AI For That",
+        url: "https://theresanaiforthat.com",
+        quotaInfo: "Global #10,205 · 老牌目錄，5000+ 工具每日更新",
+      },
+      {
+        id: "toolify-ai",
+        title: "Toolify.ai",
+        url: "https://toolify.ai",
+        quotaInfo: "Global #27,588 · 有流量排名與使用趨勢數據",
+      },
+      {
+        id: "ai-bot",
+        title: "AI 工具集",
+        url: "https://ai-bot.cn",
+        quotaInfo: "Global #32,965 · 中文最大 AI 工具導航站",
+      },
+      {
+        id: "creati-ai",
+        title: "Creati.ai",
+        url: "https://creati.ai/tw/",
+        quotaInfo: "Global #70,811 · AI 工具目錄，涵蓋各類應用場景",
+      },
+      {
+        id: "futurepedia",
+        title: "Futurepedia",
+        url: "https://www.futurepedia.io/ai-tools",
+        quotaInfo: "Global #91,370 · 全球知名 AI 工具資料庫",
+      },
+      {
+        id: "aitools-aiting",
+        title: "AI.Tools",
+        url: "https://aitools.aiting.com/tw/",
+        quotaInfo: "繁中 AI 工具導覽平台",
       },
     ],
   },

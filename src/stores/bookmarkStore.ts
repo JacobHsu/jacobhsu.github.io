@@ -1,35 +1,6 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 import { Category, Bookmark } from '../types';
-import { defaultCategories } from '../data/aiTools';
-
-const migrateBookmarks = (categories: Category[]): Category[] => {
-  return categories.map(category => {
-    const defaultCategory = defaultCategories.find(cat => cat.id === category.id);
-
-    const savedMap = new Map(category.bookmarks.map(bm => [bm.id, bm]));
-
-    const mergedByDefault = (defaultCategory?.bookmarks ?? []).map(defaultBm => {
-      const saved = savedMap.get(defaultBm.id);
-      if (saved) {
-        return {
-          ...saved,
-          quotaInfo: saved.quotaInfo || defaultBm.quotaInfo,
-          appUrl: saved.appUrl || defaultBm.appUrl
-        };
-      }
-      return defaultBm;
-    });
-
-    const defaultIds = new Set((defaultCategory?.bookmarks ?? []).map(bm => bm.id));
-    const userAdded = category.bookmarks.filter(bm => !defaultIds.has(bm.id));
-
-    return {
-      ...category,
-      bookmarks: [...mergedByDefault, ...userAdded]
-    };
-  });
-};
+import { defaultCategories } from '../data/tools';
 
 interface BookmarkStore {
   categories: Category[];
@@ -43,9 +14,7 @@ interface BookmarkStore {
   getFaviconUrl: (url: string) => string;
 }
 
-export const useBookmarkStore = create<BookmarkStore>()(
-  persist(
-    (set, get) => ({
+export const useBookmarkStore = create<BookmarkStore>()((set, get) => ({
       categories: defaultCategories,
 
       addBookmark: (categoryId, bookmark) => {
@@ -171,14 +140,4 @@ export const useBookmarkStore = create<BookmarkStore>()(
           return '';
         }
       }
-    }),
-    {
-      name: 'papaly-bookmarks-v3',
-      onRehydrateStorage: () => (state) => {
-        if (state) {
-          state.categories = migrateBookmarks(state.categories);
-        }
-      },
-    }
-  )
-);
+}));

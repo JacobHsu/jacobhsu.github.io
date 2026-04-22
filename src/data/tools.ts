@@ -31,22 +31,10 @@ export const defaultCategories: Category[] = [
         quotaInfo: "免費版每日 5 次 Pro 搜尋",
       },
       {
-        id: "copilot",
-        title: "Microsoft Copilot",
-        url: "https://copilot.microsoft.com",
-        quotaInfo: "免費版有功能限制",
-      },
-      {
         id: "grok",
         title: "Grok",
         url: "https://grok.com",
         quotaInfo: "X Premium 用戶專享",
-      },
-      {
-        id: "deepseek",
-        title: "DeepSeek",
-        url: "https://chat.deepseek.com",
-        quotaInfo: "免費版有使用限制",
       },
       {
         id: "kuse-ai",
@@ -65,31 +53,6 @@ export const defaultCategories: Category[] = [
         title: "OpenRouter",
         url: "https://openrouter.ai",
         quotaInfo: "聚合多種 AI 模型，包含免費模型",
-      },
-    ],
-  },
-  {
-    id: "ai-browser",
-    title: "AI Browser",
-    color: "bg-orange-500", // 橙色 = 瀏覽、探索、連接
-    bookmarks: [
-      {
-        id: "comet-browser",
-        title: "Comet Browser",
-        url: "https://comet.perplexity.ai",
-        quotaInfo: "Perplexity 推出的 AI 瀏覽器",
-      },
-      {
-        id: "atlas-browser",
-        title: "Atlas Browser",
-        url: "https://chatgpt.com/zh-Hant/atlas/",
-        quotaInfo: "OpenAI 推出的 AI 瀏覽器",
-      },
-      {
-        id: "fello-browser",
-        title: "Fello AI",
-        url: "https://fello.ai",
-        quotaInfo: "AI 驅動的智能瀏覽器",
       },
     ],
   },
@@ -129,13 +92,6 @@ export const defaultCategories: Category[] = [
         url: "https://langchain.com",
         quotaInfo: "開源框架免費使用",
       },
-
-      {
-        id: "dify-ai",
-        title: "Dify AI",
-        url: "https://dify.ai",
-        quotaInfo: "開源平台，支援雲端或自架",
-      },
       {
         id: "genspark",
         title: "Genspark",
@@ -160,8 +116,36 @@ export const defaultCategories: Category[] = [
         url: "https://lobechat.com",
         quotaInfo: "開源平台，支援雲端或自架",
       },
-
-
+      {
+        id: "langgraph",
+        title: "LangGraph",
+        url: "https://langchain-ai.github.io/langgraph",
+        quotaInfo: "用圖結構編排多 Agent，開源免費",
+      },
+      {
+        id: "owl-agent",
+        title: "OWL",
+        url: "https://github.com/camel-ai/owl",
+        quotaInfo: "多 Agent 協作框架，開源免費",
+      },
+      {
+        id: "pydantic-ai",
+        title: "pydantic-ai",
+        url: "https://ai.pydantic.dev",
+        quotaInfo: "類型安全的 Python Agent 框架",
+      },
+      {
+        id: "copilotkit",
+        title: "CopilotKit",
+        url: "https://copilotkit.ai",
+        quotaInfo: "將 AI Copilot 嵌入 React 應用",
+      },
+      {
+        id: "awesome-agents",
+        title: "Awesome Agents",
+        url: "https://github.com/kyrolabs/awesome-agents",
+        quotaInfo: "100+ 開源 Agent 工具精選清單",
+      },
     ],
   },
   {
@@ -223,37 +207,6 @@ export const defaultCategories: Category[] = [
     ],
   },
   {
-    id: "low-code",
-    title: "Low-Code",
-    color: "bg-indigo-500", // 靛藍色 = 平衡、效率、專業
-    bookmarks: [
-      {
-        id: "retool",
-        title: "Retool",
-        url: "https://retool.com",
-        quotaInfo: "免費版 5 個用戶",
-      },
-      {
-        id: "supabase",
-        title: "Supabase",
-        url: "https://supabase.com",
-        quotaInfo: "免費版 500MB 資料庫",
-      },
-      {
-        id: "firebase",
-        title: "Firebase",
-        url: "https://firebase.google.com",
-        quotaInfo: "免費版 Spark 方案",
-      },
-      {
-        id: "airtable",
-        title: "Airtable",
-        url: "https://airtable.com",
-        quotaInfo: "免費版 1200 筆記錄",
-      },
-    ],
-  },
-  {
     id: "ide",
     title: "IDE",
     color: "bg-slate-600", // 石板灰 = 工具、穩定、專業
@@ -300,6 +253,18 @@ export const defaultCategories: Category[] = [
         url: "https://codeium.com/windsurf",
         quotaInfo: "AI-first IDE，免費使用",
       },
+      {
+        id: "claude-code-cli",
+        title: "Claude Code",
+        url: "https://claude.ai/code",
+        quotaInfo: "Anthropic 命令列 AI 編程 agent",
+      },
+      {
+        id: "aider",
+        title: "Aider",
+        url: "https://aider.chat",
+        quotaInfo: "終端機 AI 結對編程工具，開源免費",
+      },
     ],
   },
   {
@@ -324,37 +289,6 @@ export const defaultCategories: Category[] = [
         title: "Continue.dev",
         url: "https://continue.dev",
         quotaInfo: "bring your own API keys",
-      },
-    ],
-  },
-  {
-    id: "ai-automation",
-    title: "Automation",
-    color: "bg-amber-500", // 琥珀色 = 自動化、效率、能量
-    bookmarks: [
-      {
-        id: "refly-ai",
-        title: "Refly.ai",
-        url: "https://refly.ai",
-        quotaInfo: "每日可獲取新積分: 100點",
-      },
-      {
-        id: "relay-app",
-        title: "Relay.app",
-        url: "https://relay.app",
-        quotaInfo: "500 free AI credits/mo",
-      },
-      {
-        id: "zapier-ai",
-        title: "Zapier",
-        url: "https://zapier.com/ai",
-        quotaInfo: "100 tasks per month",
-      },
-      {
-        id: "make-ai",
-        title: "Make.com",
-        url: "https://make.com",
-        quotaInfo: "1,000 credits/month",
       },
     ],
   },
@@ -393,54 +327,60 @@ export const defaultCategories: Category[] = [
         url: "https://www.capalyze.ai",
         quotaInfo: "AI 驅動的自動化資料收集與分析",
       },
+      {
+        id: "vanna-ai",
+        title: "Vanna AI",
+        url: "https://vanna.ai",
+        quotaInfo: "自然語言轉 SQL，開源免費",
+      },
+      {
+        id: "gpt-researcher",
+        title: "GPT Researcher",
+        url: "https://gptr.dev",
+        quotaInfo: "自動化研究 Agent，開源免費",
+      },
+      {
+        id: "chroma",
+        title: "Chroma",
+        url: "https://trychroma.com",
+        quotaInfo: "開源向量資料庫，適合 RAG 應用",
+      },
     ],
   },
   {
-    id: "ai-design",
-    title: "Design & Creative",
-    color: "bg-rose-500", // 玫瑰色 = 創意、藝術、美感
+    id: "mcp-tools",
+    title: "MCP Tools",
+    color: "bg-purple-600",
     bookmarks: [
       {
-        id: "midjourney",
-        title: "Midjourney",
-        url: "https://midjourney.com",
-        quotaInfo: "免費試用 25 張圖片",
+        id: "tavily",
+        title: "Tavily",
+        url: "https://tavily.com",
+        quotaInfo: "專為 AI Agent 設計的搜尋引擎，1000 credits/mo",
       },
       {
-        id: "stable-diffusion",
-        title: "Stable Diffusion",
-        url: "https://stablediffusionweb.com",
-        quotaInfo: "每日可獲取新積分: 20點",
+        id: "context7",
+        title: "Context7",
+        url: "https://context7.com",
+        quotaInfo: "將最新函式庫文件注入 LLM 上下文",
       },
       {
-        id: "canva-ai",
-        title: "Canva AI",
-        url: "https://canva.com/ai",
-        quotaInfo: "免費版每月 50 次 AI 生成",
+        id: "mcp-playwright",
+        title: "MCP Playwright",
+        url: "https://github.com/microsoft/playwright-mcp",
+        quotaInfo: "為 LLM 提供瀏覽器自動化能力",
       },
       {
-        id: "figma-ai",
-        title: "Figma AI",
-        url: "https://figma.com",
-        quotaInfo: "免費版有功能限制",
+        id: "fastmcp",
+        title: "fastmcp",
+        url: "https://github.com/jlowin/fastmcp",
+        quotaInfo: "快速搭建 MCP 服務，開源免費",
       },
       {
-        id: "freepik",
-        title: "Freepik",
-        url: "https://zh.freepik.com/圖像",
-        quotaInfo: "免費版每日下載 10 個素材",
-      },
-      {
-        id: "remini-ai",
-        title: "Remini",
-        url: "https://remini.ai",
-        quotaInfo: "免費版每日有使用限制",
-      },
-      {
-        id: "remove-bg",
-        title: "remove.bg",
-        url: "https://www.remove.bg/zh",
-        quotaInfo: "免費版無限低解析度預覽",
+        id: "mcphub",
+        title: "MCPHub",
+        url: "https://mcphub.io",
+        quotaInfo: "透過 HTTP 管理多個 MCP 服務",
       },
     ],
   },
@@ -478,6 +418,74 @@ export const defaultCategories: Category[] = [
         title: "Can I Run AI",
         url: "https://canirun.ai",
         quotaInfo: "查詢硬體是否支援本地執行 AI 模型",
+      },
+    ],
+  },
+  {
+    id: "skills",
+    title: "Skills",
+    color: "bg-fuchsia-600",
+    bookmarks: [
+      {
+        id: "superpowers",
+        title: "Superpowers",
+        url: "https://github.com/ezyang/claude-superpowers",
+        quotaInfo: "Claude Code 的 20+ 實戰技能集合",
+      },
+      {
+        id: "awesome-claude-skills",
+        title: "Awesome Claude Skills",
+        url: "https://github.com/anthropics/awesome-claude-skills",
+        quotaInfo: "精選 Claude 技能合集",
+      },
+      {
+        id: "anthropic-skills-repo",
+        title: "人類中心技能倉庫",
+        url: "https://github.com/anthropics/anthropic-skills",
+        quotaInfo: "Anthropic 官方技能倉庫",
+      },
+      {
+        id: "magi-archive",
+        title: "MAGI//ARCHIVE",
+        url: "https://magi.ee",
+        quotaInfo: "每日更新最新 AI 專案存儲庫",
+      },
+    ],
+  },
+  {
+    id: "course",
+    title: "Course",
+    color: "bg-yellow-600",
+    bookmarks: [
+      {
+        id: "deeplearning-ai",
+        title: "DeepLearning.AI",
+        url: "https://www.deeplearning.ai",
+        quotaInfo: "AI 專業課程平台，含免費短期課程",
+      },
+      {
+        id: "prompting-guide",
+        title: "Prompting Guide",
+        url: "https://www.promptingguide.ai/zh",
+        quotaInfo: "完整 Prompt 工程指南，免費閱讀",
+      },
+      {
+        id: "anthropic-prompt-tutorial",
+        title: "Anthropic Prompt 教程",
+        url: "https://github.com/anthropics/prompt-eng-interactive-tutorial",
+        quotaInfo: "9 章 + Jupyter Notebook 實操練習",
+      },
+      {
+        id: "anthropic-docs",
+        title: "Anthropic 官方文件",
+        url: "https://docs.anthropic.com",
+        quotaInfo: "API、提示、工具呼叫、Agent 核心內容",
+      },
+      {
+        id: "skillsmp",
+        title: "SkillsMP",
+        url: "https://skillsmp.com",
+        quotaInfo: "8 萬+ 社群技能的市場平台",
       },
 
     ],

@@ -76,7 +76,7 @@ ai-tools/
 │   │   ├── AddBookmarkModal.tsx
 │   │   └── EditBookmarkModal.tsx
 │   ├── data/
-│   │   └── aiTools.ts      # 預設資料
+│   │   └── tools.ts        # 預設資料
 │   ├── stores/
 │   │   └── bookmarkStore.ts
 │   ├── types/

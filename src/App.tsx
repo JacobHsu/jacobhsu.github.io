@@ -91,6 +91,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
+      <h1 className="sr-only">Web Tools Dashboard - 工具書籤管理</h1>
       <div className="flex-1 p-6">
         <div className="max-w-7xl mx-auto">
         <DndContext

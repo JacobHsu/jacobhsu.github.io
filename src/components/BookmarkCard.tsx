@@ -52,10 +52,14 @@ export const BookmarkCard = memo<BookmarkCardProps>(({ bookmark, categoryId, onE
   };
 
   // 快取計算結果，避免重複計算
-  const faviconUrl = useMemo(() => 
+  const faviconUrl = useMemo(() =>
     bookmark.favicon || getFaviconUrl(bookmark.url),
     [bookmark.favicon, bookmark.url]
   );
+
+  const hostname = useMemo(() => {
+    try { return new URL(bookmark.url).hostname; } catch { return bookmark.title; }
+  }, [bookmark.url, bookmark.title]);
 
   const quotaInfo = useMemo(() =>
     getQuotaInfo(bookmark),
@@ -82,7 +86,7 @@ export const BookmarkCard = memo<BookmarkCardProps>(({ bookmark, categoryId, onE
           {faviconUrl ? (
             <img
               src={faviconUrl}
-              alt=""
+              alt={`${hostname} favicon`}
               className="w-5 h-5 rounded-sm"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;

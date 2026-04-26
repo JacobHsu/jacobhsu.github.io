@@ -2,57 +2,63 @@ import { Category } from '../types';
 
 export const defaultCategories: Category[] = [
   {
-    id: "ai-chat",
-    title: "Chat & Assistant",
+    id: "ai-models",
+    title: "models",
     color: "bg-blue-500", // 藍色 = 溝通、對話、智慧
     bookmarks: [
       {
         id: "chatgpt",
         title: "ChatGPT",
-        url: "https://chat.openai.com",
-        quotaInfo: "免費版每月有使用限制",
+        url: "https://platform.openai.com/api-keys",
+        quotaInfo: "OpenAI API Key 管理",
       },
       {
         id: "gemini",
         title: "Gemini",
-        url: "https://gemini.google.com",
-        quotaInfo: "免費版每日 60 次查詢",
-      },
-      {
-        id: "claude",
-        title: "Claude",
-        url: "https://claude.ai",
-        quotaInfo: "免費版每日有對話限制",
-      },
-      {
-        id: "perplexity",
-        title: "Perplexity",
-        url: "https://perplexity.ai",
-        quotaInfo: "免費版每日 5 次 Pro 搜尋",
-      },
-      {
-        id: "grok",
-        title: "Grok",
-        url: "https://grok.com",
-        quotaInfo: "X Premium 用戶專享",
-      },
-      {
-        id: "kuse-ai",
-        title: "Kuse.ai",
-        url: "https://kuse.ai",
-        quotaInfo: "每日免費 10 次查詢",
-      },
-      {
-        id: "felo-ai",
-        title: "Felo",
-        url: "https://felo.ai",
-        quotaInfo: "每日贈送 200 點數",
+        url: "https://aistudio.google.com/api-keys",
+        quotaInfo: "Google AI Studio API Key 管理",
       },
       {
         id: "openrouter",
         title: "OpenRouter",
-        url: "https://openrouter.ai",
-        quotaInfo: "聚合多種 AI 模型，包含免費模型",
+        url: "https://openrouter.ai/settings/keys",
+        quotaInfo: "聚合多種 AI 模型 API Key 管理",
+      },
+      {
+        id: "nvidia-build",
+        title: "NVIDIA Build",
+        url: "https://build.nvidia.com/settings/api-keys",
+        quotaInfo: "NVIDIA NIM API Key 管理",
+      },
+      {
+        id: "grok",
+        title: "Grok",
+        url: "https://console.x.ai/",
+        quotaInfo: "xAI API Key 管理",
+      },
+      {
+        id: "groq",
+        title: "Groq",
+        url: "https://console.groq.com/keys",
+        quotaInfo: "永久免費，高速推論，有 rate limit",
+      },
+      {
+        id: "huggingface",
+        title: "Hugging Face",
+        url: "https://huggingface.co/settings/tokens",
+        quotaInfo: "永久免費 Serverless Inference API",
+      },
+      {
+        id: "mistral-ai",
+        title: "Mistral AI",
+        url: "https://console.mistral.ai/api-keys",
+        quotaInfo: "永久免費層，歐洲頂尖模型",
+      },
+      {
+        id: "cerebras",
+        title: "Cerebras",
+        url: "https://cloud.cerebras.ai/platform",
+        quotaInfo: "永久免費，Llama 系列，速度快",
       },
     ],
   },
@@ -537,6 +543,25 @@ export const defaultCategories: Category[] = [
         quotaInfo: "8 萬+ 社群技能的市場平台",
       },
 
+    ],
+  },
+  {
+    id: "google",
+    title: "Google",
+    color: "bg-blue-600",
+    bookmarks: [
+      {
+        id: "google-skills",
+        title: "Google Skills",
+        url: "https://www.skills.google/",
+        quotaInfo: "Google 官方免費技能訓練平台",
+      },
+      {
+        id: "skillshop",
+        title: "Skillshop",
+        url: "https://skillshop.withgoogle.com/intl/zh-TW_ALL/",
+        quotaInfo: "Google 產品官方認證課程平台",
+      },
     ],
   },
 ];

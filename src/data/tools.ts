@@ -3,7 +3,7 @@ import { Category } from '../types';
 export const defaultCategories: Category[] = [
   {
     id: "ai-models",
-    title: "models",
+    title: "Models",
     color: "bg-blue-500", // 藍色 = 溝通、對話、智慧
     bookmarks: [
       {
@@ -155,64 +155,6 @@ export const defaultCategories: Category[] = [
     ],
   },
   {
-    id: "no-code",
-    title: "No-Code",
-    color: "bg-violet-500", // 紫色 = 魔法、簡化、創新
-    bookmarks: [
-      {
-        id: "lovable-dev",
-        title: "Lovable",
-        url: "https://lovable.dev",
-        quotaInfo: "5 free daily credits",
-        appUrl: "https://crypto-tv-signal.lovable.app",
-      },
-      {
-        id: "replit",
-        title: "Replit",
-        url: "https://replit.com",
-        quotaInfo: "Publish 1 app",
-      },
-      {
-        id: "v0-dev",
-        title: "v0.dev",
-        url: "https://v0.dev",
-        quotaInfo: "$5 of usage credit per month",
-        appUrl: "https://v0-crypto-currency-calendar.vercel.app",
-      },
-      {
-        id: "glide",
-        title: "Glide",
-        url: "https://glideapps.com",
-        quotaInfo: "1 editor",
-        appUrl: "https://shareholder-gift.glide.page",
-      },
-      {
-        id: "webflow",
-        title: "Webflow",
-        url: "https://webflow.com",
-        quotaInfo: "免費版 2 個專案",
-      },
-      {
-        id: "framer",
-        title: "Framer",
-        url: "https://framer.com",
-        quotaInfo: "免費版 3 個網站",
-      },
-      {
-        id: "wix",
-        title: "Wix Studio",
-        url: "https://wix.com/studio",
-        quotaInfo: "免費版有 Wix 品牌",
-      },
-      {
-        id: "adalo",
-        title: "Adalo",
-        url: "https://adalo.com",
-        quotaInfo: "200 Records Per App",
-      },
-    ],
-  },
-  {
     id: "ide",
     title: "IDE",
     color: "bg-slate-600", // 石板灰 = 工具、穩定、專業
@@ -295,6 +237,37 @@ export const defaultCategories: Category[] = [
         title: "Continue.dev",
         url: "https://continue.dev",
         quotaInfo: "bring your own API keys",
+      },
+    ],
+  },
+  {
+    id: "claude-code",
+    title: "Claude Code",
+    color: "bg-orange-500",
+    bookmarks: [
+      {
+        id: "claude-directory",
+        title: "Claude Directory",
+        url: "https://code.claude.com/docs/en/claude-directory",
+        quotaInfo: "Claude Code 官方 Agent 目錄文件",
+      },
+      {
+        id: "superpowers",
+        title: "Superpowers",
+        url: "https://github.com/obra/superpowers",
+        quotaInfo: "Agentic skills 框架與開發方法論",
+      },
+      {
+        id: "gstack",
+        title: "Gstack",
+        url: "https://github.com/garrytan/gstack",
+        quotaInfo: "YC CEO 的 Claude Code 角色導向 skills 工作流",
+      },
+      {
+        id: "agency-agents",
+        title: "Agency Agents",
+        url: "https://github.com/msitarzewski/agency-agents",
+        quotaInfo: "Claude Code 多 Agent 協作框架",
       },
     ],
   },
@@ -467,7 +440,7 @@ export const defaultCategories: Category[] = [
   {
     id: "ai-tools",
     title: "AI Tools",
-    color: "bg-orange-500",
+    color: "bg-amber-500",
     bookmarks: [
       {
         id: "theresanaiforthat",

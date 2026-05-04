@@ -255,7 +255,13 @@ export const defaultCategories: Category[] = [
         id: "superpowers",
         title: "Superpowers",
         url: "https://github.com/obra/superpowers",
-        quotaInfo: "Agentic skills 框架與開發方法論",
+        quotaInfo: "Agentic skills 框架與開發方法論 plugin",
+      },
+      {
+        id: "everything-claude-code",
+        title: "Everything Claude Code",
+        url: "https://github.com/affaan-m/everything-claude-code",
+        quotaInfo: "Claude Code 資源整合清單 plugin",
       },
       {
         id: "gstack",

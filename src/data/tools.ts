@@ -258,6 +258,12 @@ export const defaultCategories: Category[] = [
         quotaInfo: "Claude Code 官方 Agent 目錄文件",
       },
       {
+        id: "anthropics-skills",
+        title: "Anthropic Skills",
+        url: "https://github.com/anthropics/skills",
+        quotaInfo: "Anthropic 官方 Claude Code skills 集合",
+      },
+      {
         id: "superpowers",
         title: "Superpowers",
         url: "https://github.com/obra/superpowers",
@@ -388,39 +394,21 @@ export const defaultCategories: Category[] = [
     ],
   },
   {
-    id: "ai-productivity",
-    title: "Productivity",
-    color: "bg-teal-500", // 青綠色 = 生產力、成長、平衡
+    id: "cloud",
+    title: "Cloud",
+    color: "bg-sky-500", // 天藍色 = 雲端、部署、擴展
     bookmarks: [
       {
-        id: "notion-ai",
-        title: "Notion AI",
-        url: "https://notion.so/ai",
-        quotaInfo: "免費版每月 20 次 AI 回應",
+        id: "vercel",
+        title: "Vercel",
+        url: "https://vercel.com",
+        quotaInfo: "前端雲端部署平台，免費方案可用",
       },
       {
-        id: "gamma",
-        title: "Gamma",
-        url: "https://gamma.app",
-        quotaInfo: "免費版每月 400 AI 點數",
-      },
-      {
-        id: "wayin-ai",
-        title: "Wayin AI",
-        url: "https://wayin.ai",
-        quotaInfo: "每天免費工具點數: 30",
-      },
-      {
-        id: "zread",
-        title: "Zread",
-        url: "https://zread.ai",
-        quotaInfo: "AI 輔助閱讀與分析 GitHub 專案",
-      },
-      {
-        id: "canirun-ai",
-        title: "Can I Run AI",
-        url: "https://canirun.ai",
-        quotaInfo: "查詢硬體是否支援本地執行 AI 模型",
+        id: "netlify",
+        title: "Netlify",
+        url: "https://netlify.com",
+        quotaInfo: "靜態網站與 serverless 部署平台",
       },
     ],
   },

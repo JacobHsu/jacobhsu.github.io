@@ -51,7 +51,7 @@ export const defaultCategories: Category[] = [
       {
         id: "mistral-ai",
         title: "Mistral AI",
-        url: "https://console.mistral.ai/api-keys",
+        url: "https://mistral.ai/",
         quotaInfo: "永久免費層，歐洲頂尖模型",
       },
       {

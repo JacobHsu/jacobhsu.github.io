@@ -96,6 +96,11 @@ ai-tools/
 - 調整順序：拖拽書籤或分類標題
 - 開啟工具：點擊書籤卡片
 
+## References
+
+[linear](https://linear.app) [MCP server docs](https://linear.app/docs/mcp)
+[project](https://linear.app/jacobhsu/project/jacobhsugithubio-9e7d4c86d890/overview)
+
 ## License
 
 MIT

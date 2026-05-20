@@ -413,37 +413,6 @@ export const defaultCategories: Category[] = [
     ],
   },
   {
-    id: "skills",
-    title: "Skills",
-    color: "bg-fuchsia-600",
-    bookmarks: [
-      {
-        id: "superpowers",
-        title: "Superpowers",
-        url: "https://github.com/ezyang/claude-superpowers",
-        quotaInfo: "Claude Code 的 20+ 實戰技能集合",
-      },
-      {
-        id: "awesome-claude-skills",
-        title: "Awesome Claude Skills",
-        url: "https://github.com/anthropics/awesome-claude-skills",
-        quotaInfo: "精選 Claude 技能合集",
-      },
-      {
-        id: "anthropic-skills-repo",
-        title: "人類中心技能倉庫",
-        url: "https://github.com/anthropics/anthropic-skills",
-        quotaInfo: "Anthropic 官方技能倉庫",
-      },
-      {
-        id: "magi-archive",
-        title: "MAGI//ARCHIVE",
-        url: "https://magi.ee",
-        quotaInfo: "每日更新最新 AI 專案存儲庫",
-      },
-    ],
-  },
-  {
     id: "ai-tools",
     title: "AI Tools",
     color: "bg-amber-500",

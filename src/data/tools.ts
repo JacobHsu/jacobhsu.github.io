@@ -512,4 +512,29 @@ export const defaultCategories: Category[] = [
       },
     ],
   },
+  {
+    id: "md",
+    title: "Markdown",
+    color: "bg-gray-600",
+    bookmarks: [
+      {
+        id: "files-md",
+        title: "Files.md",
+        url: "https://files.md/",
+        quotaInfo: "線上 Markdown 檔案分享與預覽",
+      },
+      {
+        id: "hackmd",
+        title: "HackMD",
+        url: "https://hackmd.io",
+        quotaInfo: "協作 Markdown 筆記平台，支援即時共編",
+      },
+      {
+        id: "slidev",
+        title: "Slidev",
+        url: "https://sli.dev/",
+        quotaInfo: "用 Markdown 製作簡報，開源免費",
+      },
+    ],
+  },
 ];

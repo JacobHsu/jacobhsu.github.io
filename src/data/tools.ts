@@ -155,52 +155,10 @@ export const defaultCategories: Category[] = [
     ],
   },
   {
-    id: "ide",
-    title: "IDE",
+    id: "cli",
+    title: "CLI",
     color: "bg-slate-600", // 石板灰 = 工具、穩定、專業
     bookmarks: [
-      {
-        id: "vscode",
-        title: "Visual Studio Code",
-        url: "https://code.visualstudio.com",
-        quotaInfo: "完全免費使用",
-      },
-      {
-        id: "antigravity",
-        title: "Antigravity",
-        url: "https://antigravity.google/",
-        quotaInfo: "Generous weekly rate limits",
-      },
-      {
-        id: "codex",
-        title: "Codex",
-        url: "https://openai.com/zh-Hant/codex/",
-        quotaInfo: "Free / Go $8 / Plus $20",
-      },
-      {
-        id: "kiro-dev",
-        title: "Kiro.dev",
-        url: "https://kiro.dev",
-        quotaInfo: "50 credits",
-      },
-      {
-        id: "warp-dev",
-        title: "Warp.dev",
-        url: "https://warp.dev",
-        quotaInfo: "免費版有功能限制",
-      },
-      {
-        id: "cursor",
-        title: "Cursor",
-        url: "https://cursor.sh",
-        quotaInfo: "AI 原生編輯器",
-      },
-      {
-        id: "windsurf",
-        title: "Windsurf",
-        url: "https://codeium.com/windsurf",
-        quotaInfo: "AI-first IDE，免費使用",
-      },
       {
         id: "claude-code-cli",
         title: "Claude Code",
@@ -358,7 +316,7 @@ export const defaultCategories: Category[] = [
   },
   {
     id: "mcp-tools",
-    title: "MCP Tools",
+    title: "MCP",
     color: "bg-purple-600",
     bookmarks: [
       {
@@ -534,6 +492,43 @@ export const defaultCategories: Category[] = [
         title: "Slidev",
         url: "https://sli.dev/",
         quotaInfo: "用 Markdown 製作簡報，開源免費",
+      },
+    ],
+  },
+  {
+    id: "skills",
+    title: "Skills",
+    color: "bg-violet-600",
+    bookmarks: [
+      {
+        id: "skills-sh",
+        title: "Skills.sh",
+        url: "https://www.skills.sh/",
+        quotaInfo: "開發者技能學習與練習平台",
+      },
+      {
+        id: "impeccable-style",
+        title: "Impeccable Style",
+        url: "https://impeccable.style/",
+        quotaInfo: "UI 開發後 CSS 技巧與前端樣式資源",
+      },
+      {
+        id: "ui-ux-pro-max-skill",
+        title: "UI/UX Pro Max Skill",
+        url: "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+        quotaInfo: "設計決策 UI/UX 進階技能資源集合",
+      },
+      {
+        id: "skills-sh-web-design",
+        title: "Web Design Guidelines",
+        url: "https://www.skills.sh/vercel-labs/agent-skills/web-design-guidelines",
+        quotaInfo: "網站上線前做最後合規檢查",
+      },
+      {
+        id: "shadcn-skills",
+        title: "shadcn/ui Skills",
+        url: "https://ui.shadcn.com/docs/skills",
+        quotaInfo: "shadcn/ui 官方 Agent Skills 文件",
       },
     ],
   },

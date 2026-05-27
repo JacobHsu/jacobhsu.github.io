@@ -222,12 +222,6 @@ export const defaultCategories: Category[] = [
         quotaInfo: "Anthropic 官方 Claude Code skills 集合",
       },
       {
-        id: "superpowers",
-        title: "Superpowers",
-        url: "https://github.com/obra/superpowers",
-        quotaInfo: "Agentic skills 框架與開發方法論 plugin",
-      },
-      {
         id: "everything-claude-code",
         title: "Everything Claude Code",
         url: "https://github.com/affaan-m/everything-claude-code",
@@ -250,6 +244,25 @@ export const defaultCategories: Category[] = [
         title: "Ruflo",
         url: "https://github.com/ruvnet/ruflo",
         quotaInfo: "Claude Code 自動化工作流框架(Claude Flow)",
+      },
+    ],
+  },
+  {
+    id: "plugin",
+    title: "Plugin",
+    color: "bg-violet-600",
+    bookmarks: [
+      {
+        id: "superpowers",
+        title: "Superpowers",
+        url: "https://github.com/obra/superpowers",
+        quotaInfo: "Agentic skills 框架與開發方法論 plugin",
+      },
+      {
+        id: "understand-anything",
+        title: "Understand Anything",
+        url: "https://github.com/Lum1104/Understand-Anything",
+        quotaInfo: "多模態理解框架，支援影片、音訊、圖片一鍵分析",
       },
     ],
   },
@@ -348,6 +361,12 @@ export const defaultCategories: Category[] = [
         title: "MCPHub",
         url: "https://mcphub.io",
         quotaInfo: "透過 HTTP 管理多個 MCP 服務",
+      },
+      {
+        id: "codegraph",
+        title: "CodeGraph",
+        url: "https://colbymchenry.github.io/codegraph/",
+        quotaInfo: "視覺化程式碼依賴關係圖，開源免費",
       },
     ],
   },

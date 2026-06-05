@@ -368,6 +368,12 @@ export const defaultCategories: Category[] = [
         url: "https://colbymchenry.github.io/codegraph/",
         quotaInfo: "視覺化程式碼依賴關係圖，開源免費",
       },
+      {
+        id: "sentry-mcp",
+        title: "Sentry MCP",
+        url: "https://github.com/getsentry/sentry-mcp",
+        quotaInfo: "Sentry 官方 MCP 伺服器，串接 issues／events／releases",
+      },
     ],
   },
   {

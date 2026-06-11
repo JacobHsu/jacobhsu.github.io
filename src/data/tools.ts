@@ -521,6 +521,38 @@ export const defaultCategories: Category[] = [
     ],
   },
   {
+    id: "demo",
+    title: "Demo",
+    color: "bg-rose-500",
+    bookmarks: [
+      {
+        id: "cc-finance-skills",
+        title: "cc-finance-skills",
+        url: "https://github.com/JacobHsu/cc-finance-skills",
+      },
+      {
+        id: "cc-custom-mcp",
+        title: "cc-custom-mcp",
+        url: "https://github.com/JacobHsu/cc-custom-mcp",
+      },
+      {
+        id: "career-ops-cc",
+        title: "cc-career-ops",
+        url: "https://github.com/JacobHsu/career-ops-cc",
+      },
+      {
+        id: "pymc-marketing-mmm",
+        title: "pymc-marketing-mmm",
+        url: "https://github.com/JacobHsu/pymc-marketing-mmm",
+      },
+      {
+        id: "ragflow-docker",
+        title: "ragflow-docker",
+        url: "https://github.com/JacobHsu/ragflow-docker",
+      },
+    ],
+  },
+  {
     id: "skills",
     title: "Skills",
     color: "bg-violet-600",

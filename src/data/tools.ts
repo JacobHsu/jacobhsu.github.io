@@ -589,4 +589,23 @@ export const defaultCategories: Category[] = [
       },
     ],
   },
+  {
+    id: "questions",
+    title: "Questions",
+    color: "bg-amber-500",
+    bookmarks: [
+      {
+        id: "yamol",
+        title: "Yamol",
+        url: "https://yamol.tw",
+        quotaInfo: "阿摩線上測驗- 錯在阿摩，贏在考場！",
+      },
+      {
+        id: "ipas-dawsonwang",
+        title: "iPAS",
+        url: "https://ipas.dawsonwang.com/",
+        quotaInfo: "iPAS AI 應用規劃師",
+      },
+    ],
+  },
 ];

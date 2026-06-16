@@ -444,6 +444,11 @@ export const defaultCategories: Category[] = [
     color: "bg-yellow-600",
     bookmarks: [
       {
+        id: "anthropic-courses",
+        title: "Anthropic courses",
+        url: "https://anthropic.skilljar.com/",
+      },
+      {
         id: "deeplearning-ai",
         title: "DeepLearning.AI",
         url: "https://www.deeplearning.ai",

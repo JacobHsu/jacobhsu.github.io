@@ -267,6 +267,31 @@ export const defaultCategories: Category[] = [
     ],
   },
   {
+    id: "predict",
+    title: "Predict",
+    color: "bg-amber-600",
+    bookmarks: [
+      {
+        id: "predict-fun",
+        title: "Predict.fun",
+        url: "https://predict.fun/",
+        quotaInfo: "預測市場平台",
+      },
+      {
+        id: "foregate",
+        title: "Foregate",
+        url: "https://www.foregate.com/",
+        quotaInfo: "預測市場平台",
+      },
+      {
+        id: "opta-analyst",
+        title: "Opta Analyst",
+        url: "https://theanalyst.com/competition/fifa-world-cup/predictions",
+        quotaInfo: "運動賽事數據預測分析",
+      },
+    ],
+  },
+  {
     id: "web-data",
     title: "Web Data",
     color: "bg-cyan-600", // 青色 = 數據、網絡、流動

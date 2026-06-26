@@ -620,8 +620,8 @@ export const defaultCategories: Category[] = [
     ],
   },
   {
-    id: "questions",
-    title: "Questions",
+    id: "quiz",
+    title: "Quiz",
     color: "bg-amber-500",
     bookmarks: [
       {
@@ -635,6 +635,12 @@ export const defaultCategories: Category[] = [
         title: "iPAS",
         url: "https://ipas.dawsonwang.com/",
         quotaInfo: "iPAS AI 應用規劃師",
+      },
+      {
+        id: "doc2form",
+        title: "Doc2Form",
+        url: "https://doc2form.dev/",
+        quotaInfo: "文件一鍵轉換為Google表單",
       },
     ],
   },

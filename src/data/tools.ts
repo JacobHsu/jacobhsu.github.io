@@ -350,6 +350,12 @@ export const defaultCategories: Category[] = [
         url: "https://trychroma.com",
         quotaInfo: "開源向量資料庫，適合 RAG 應用",
       },
+      {
+        id: "wayback-machine",
+        title: "Wayback Machine",
+        url: "https://web.archive.org/",
+        quotaInfo: "網站歷史存檔查詢，免費",
+      },
     ],
   },
   {

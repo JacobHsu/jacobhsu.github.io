@@ -60,6 +60,12 @@ export const defaultCategories: Category[] = [
         url: "https://cloud.cerebras.ai/platform",
         quotaInfo: "永久免費，Llama 系列，速度快",
       },
+      {
+        id: "fal-ai",
+        title: "fal.ai",
+        url: "https://fal.ai/",
+        quotaInfo: "圖像/影片生成模型 API 平台",
+      },
     ],
   },
   {
@@ -553,6 +559,12 @@ export const defaultCategories: Category[] = [
         title: "Slidev",
         url: "https://sli.dev/",
         quotaInfo: "用 Markdown 製作簡報，開源免費",
+      },
+      {
+        id: "pdf-inspector",
+        title: "PDF Inspector",
+        url: "https://github.com/firecrawl/pdf-inspector",
+        quotaInfo: "PDF 轉 Markdown 檢視工具，開源免費",
       },
     ],
   },

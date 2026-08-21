@@ -561,6 +561,12 @@ export const defaultCategories: Category[] = [
         quotaInfo: "用 Markdown 製作簡報，開源免費",
       },
       {
+        id: "remotion-templates",
+        title: "Remotion Templates",
+        url: "https://www.reactvideoeditor.com/remotion-templates",
+        quotaInfo: "React Video Editor 的 Remotion 影片模板",
+      },
+      {
         id: "pdf-inspector",
         title: "PDF Inspector",
         url: "https://github.com/firecrawl/pdf-inspector",

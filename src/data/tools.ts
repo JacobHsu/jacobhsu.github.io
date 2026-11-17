@@ -117,10 +117,10 @@ export const defaultCategories: Category[] = [
         quotaInfo: "免費版有使用限制",
       },
       {
-        id: "autogen",
-        title: "AutoGen",
-        url: "https://microsoft.github.io/autogen",
-        quotaInfo: "微軟開源專案",
+        id: "mausbot",
+        title: "OpenMausBot",
+        url: "https://mausbot.com/",
+        quotaInfo: "Open-source Grok Bot alternative",
       },
       {
         id: "lobechat",
@@ -250,6 +250,12 @@ export const defaultCategories: Category[] = [
         title: "Ruflo",
         url: "https://github.com/ruvnet/ruflo",
         quotaInfo: "Claude Code 自動化工作流框架(Claude Flow)",
+      },
+      {
+        id: "claude-trading-skills",
+        title: "Claude Trading Skills",
+        url: "https://github.com/tradermonty/claude-trading-skills",
+        quotaInfo: "Claude Code skills for equity investors and traders",
       },
     ],
   },
@@ -481,9 +487,9 @@ export const defaultCategories: Category[] = [
     color: "bg-yellow-600",
     bookmarks: [
       {
-        id: "anthropic-courses",
-        title: "Anthropic courses",
-        url: "https://anthropic.skilljar.com/",
+        id: "claude-academy",
+        title: "Claude Academy",
+        url: "https://academy.claude.com/zh-TW",
       },
       {
         id: "deeplearning-ai",
@@ -593,16 +599,6 @@ export const defaultCategories: Category[] = [
         id: "career-ops-cc",
         title: "cc-career-ops",
         url: "https://github.com/JacobHsu/career-ops-cc",
-      },
-      {
-        id: "pymc-marketing-mmm",
-        title: "pymc-marketing-mmm",
-        url: "https://github.com/JacobHsu/pymc-marketing-mmm",
-      },
-      {
-        id: "ragflow-docker",
-        title: "ragflow-docker",
-        url: "https://github.com/JacobHsu/ragflow-docker",
       },
     ],
   },

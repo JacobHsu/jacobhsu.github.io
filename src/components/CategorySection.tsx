@@ -44,15 +44,21 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ category, onAd
             <div className="flex-1 p-3">
               <div className="flex items-center justify-between">
                 <h3 className="font-medium text-gray-700 text-sm">{category.title}</h3>
-                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button 
+                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 [@media(hover:none)]:opacity-100 transition-opacity">
+                  <button
+                    type="button"
                     onClick={onAddBookmark}
                     className="p-1 hover:bg-gray-100 rounded"
                     title="Add bookmark"
+                    aria-label={`新增書籤到 ${category.title}`}
                   >
                     <Link size={14} className="text-gray-500" />
                   </button>
-                  <button className="p-1 hover:bg-gray-100 rounded">
+                  <button
+                    type="button"
+                    className="p-1 hover:bg-gray-100 rounded"
+                    aria-label={`更多：${category.title}`}
+                  >
                     <MoreHorizontal size={14} className="text-gray-500" />
                   </button>
                 </div>

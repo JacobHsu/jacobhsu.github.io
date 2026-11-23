@@ -1,4 +1,4 @@
-import { useState, memo, useMemo } from 'react';
+import { useState, memo, useMemo, useEffect, useId } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Bookmark } from '../types';
@@ -30,9 +30,25 @@ const getFaviconUrl = (url: string): string => {
 
 // 使用 memo 避免不必要的重渲染
 export const BookmarkCard = memo<BookmarkCardProps>(({ bookmark, categoryId, onEdit }) => {
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  
+  const tooltipId = useId();
+
+  // WCAG 1.4.13: shown on hover or keyboard focus, persists until both end, dismissible with Esc
+  const showTooltip = (isHovered || isFocused) && !isDismissed && !isExpanded;
+
+  // Document-level so Esc also dismisses a hover-only tooltip while focus is elsewhere
+  useEffect(() => {
+    if (!showTooltip) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsDismissed(true);
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [showTooltip]);
+
   const {
     listeners,
     setNodeRef,
@@ -72,8 +88,22 @@ export const BookmarkCard = memo<BookmarkCardProps>(({ bookmark, categoryId, onE
       style={style}
       {...listeners}
       className="relative hover:bg-gray-50 cursor-pointer group"
-      onMouseEnter={() => setShowTooltip(true)}
-      onMouseLeave={() => setShowTooltip(false)}
+      // mousemove, not mouseenter: when Esc hides a tooltip under a resting pointer, the browser fires
+      // mouseenter on the card now beneath it, which would pop that card's tooltip without any movement
+      onMouseMove={() => {
+        if (isHovered) return;
+        setIsHovered(true);
+        setIsDismissed(false);
+      }}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocus={(e) => {
+        // Reset Esc-dismissal only when focus enters the card, not when it moves between its controls
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setIsDismissed(false);
+        setIsFocused(true);
+      }}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setIsFocused(false);
+      }}
     >
       {/* Main bookmark row */}
       <div className="flex items-center gap-2 py-2 px-1">
@@ -84,6 +114,7 @@ export const BookmarkCard = memo<BookmarkCardProps>(({ bookmark, categoryId, onE
           rel="noopener noreferrer"
           draggable={false}
           className="flex items-center gap-2 flex-1 min-w-0 rounded"
+          aria-describedby={`${tooltipId}-desc`}
         >
         <div className="flex-shrink-0 w-5 h-5">
           {faviconUrl ? (
@@ -163,16 +194,20 @@ export const BookmarkCard = memo<BookmarkCardProps>(({ bookmark, categoryId, onE
         </div>
       ) : null}
 
-      {/* Tooltip */}
-      {showTooltip && !isExpanded ? (
-        <div className="absolute left-0 top-full mt-1 z-50 bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap max-w-xs">
+      {/* Tooltip: always rendered (hidden) so aria-describedby resolves; pt-1 instead of a margin
+          keeps the gap hoverable so the pointer can move onto the tooltip without it closing */}
+      <div id={tooltipId} role="tooltip" hidden={!showTooltip} className="absolute left-0 top-full z-50 pt-1">
+        <div className="bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap max-w-xs">
           <div className="font-medium">{bookmark.title}</div>
-          {bookmark.description ? (
-            <div className="text-gray-200 truncate">{bookmark.description}</div>
-          ) : null}
-          <div className="text-gray-300">{quotaInfo}</div>
+          {/* Description excludes the title, which is already the link's accessible name */}
+          <div id={`${tooltipId}-desc`}>
+            {bookmark.description ? (
+              <div className="text-gray-200 truncate">{bookmark.description}</div>
+            ) : null}
+            <div className="text-gray-300">{quotaInfo}</div>
+          </div>
         </div>
-      ) : null}
+      </div>
     </div>
   );
 }, (prevProps, nextProps) => {

@@ -276,6 +276,12 @@ export const defaultCategories: Category[] = [
         url: "https://github.com/Lum1104/Understand-Anything",
         quotaInfo: "多模態理解框架，支援影片、音訊、圖片一鍵分析",
       },
+      {
+        id: "modern-web-guidance",
+        title: "Modern Web Guidance",
+        url: "https://developer.chrome.com/docs/modern-web-guidance?hl=zh-tw",
+        quotaInfo: "Chrome 官方現代 Web 開發最佳實務 agent skills",
+      },
     ],
   },
   {

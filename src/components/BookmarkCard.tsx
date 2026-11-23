@@ -122,6 +122,9 @@ export const BookmarkCard = memo<BookmarkCardProps>(({ bookmark, categoryId, onE
               src={faviconUrl}
               alt=""
               draggable={false}
+              loading="lazy"
+              width={20}
+              height={20}
               className="w-5 h-5 rounded-sm"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;

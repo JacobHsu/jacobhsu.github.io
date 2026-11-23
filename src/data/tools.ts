@@ -161,6 +161,25 @@ export const defaultCategories: Category[] = [
     ],
   },
   {
+    id: "ai-browser",
+    title: "AI Browser",
+    color: "bg-indigo-500",
+    bookmarks: [
+      {
+        id: "comet",
+        title: "Comet",
+        url: "https://www.perplexity.ai/comet",
+        quotaInfo: "Perplexity 推出的 AI 瀏覽器，內建 AI 助理代你瀏覽與操作網頁",
+      },
+      {
+        id: "ego-lite",
+        title: "Ego Lite",
+        url: "https://lite.ego.app/zh-hant",
+        quotaInfo: "為 AI Agent 打造的網頁自動化瀏覽器，可沿用你的登入狀態",
+      },
+    ],
+  },
+  {
     id: "cli",
     title: "CLI",
     color: "bg-slate-600", // 石板灰 = 工具、穩定、專業

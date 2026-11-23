@@ -81,7 +81,7 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ categoryId, 
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <div className="flex items-center gap-2">
-            <h2 id={`${id}-heading`} className="text-lg font-medium text-gray-800">編輯書籤</h2>
+            <h2 id={`${id}-heading`} className="text-lg font-medium text-gray-800">新增書籤</h2>
             {faviconUrl ? (
               <img
                 src={faviconUrl}
@@ -127,29 +127,19 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ categoryId, 
           {/* URL field */}
           <div>
             <label htmlFor={`${id}-url`} className="block text-sm font-medium text-gray-700 mb-1">網址</label>
-            <div className="flex gap-2">
-              <div className="flex-1">
-                <input
-                  id={`${id}-url`}
-                  type="url"
-                  placeholder="https://app.kuse.ai/"
-                  value={url}
-                  onChange={handleUrlChange}
-                  onBlur={handleUrlBlur}
-                  autoCorrect="off"
-                  autoCapitalize="none"
-                  spellCheck={false}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  required
-                />
-              </div>
-              <button
-                type="button"
-                className="px-3 py-2 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50"
-              >
-                更多選項
-              </button>
-            </div>
+            <input
+              id={`${id}-url`}
+              type="url"
+              placeholder="https://app.kuse.ai/"
+              value={url}
+              onChange={handleUrlChange}
+              onBlur={handleUrlBlur}
+              autoCorrect="off"
+              autoCapitalize="none"
+              spellCheck={false}
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              required
+            />
           </div>
 
           {/* Description field */}
@@ -165,19 +155,6 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ categoryId, 
             />
           </div>
 
-          {/* Tags field */}
-          <div>
-            <label htmlFor={`${id}-tags`} className="block text-sm font-medium text-gray-700 mb-1">標籤</label>
-            <input
-              id={`${id}-tags`}
-              type="text"
-              placeholder="標籤"
-              aria-describedby={`${id}-tags-hint`}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
-            <div id={`${id}-tags-hint`} className="text-xs text-gray-500 mt-1">100 個字元以內</div>
-          </div>
-
           {/* Actions */}
           <div className="flex justify-between items-center pt-4">
             <button
@@ -185,7 +162,7 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ categoryId, 
               onClick={closeDialog}
               className="text-sm text-gray-600 hover:text-gray-800 transition-colors"
             >
-              取消編輯
+              取消新增
             </button>
             <div className="flex gap-2">
               <button

@@ -43,7 +43,7 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ category, onAd
             {/* Content */}
             <div className="flex-1 p-3">
               <div className="flex items-center justify-between">
-                <h3 className="font-medium text-gray-700 text-sm">{category.title}</h3>
+                <h2 className="font-medium text-gray-700 text-sm">{category.title}</h2>
                 <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 [@media(hover:none)]:opacity-100 transition-opacity">
                   <button
                     type="button"

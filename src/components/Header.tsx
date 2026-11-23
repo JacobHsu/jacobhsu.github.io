@@ -12,6 +12,7 @@ export function Header() {
         rel="noopener noreferrer"
         className="flex items-center justify-center w-10 h-10 text-gray-400 hover:text-gray-600 transition-colors"
         title="GitHub"
+        aria-label="GitHub"
       >
         <Github size={22} />
       </a>

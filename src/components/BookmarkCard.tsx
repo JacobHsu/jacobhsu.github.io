@@ -15,6 +15,10 @@ const getQuotaInfo = (bookmark: Bookmark): string => {
   return bookmark.quotaInfo || '請查看官網了解額度限制';
 };
 
+// Hover-revealed controls must also show on keyboard focus and on devices without hover
+const revealClass =
+  'opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 [@media(hover:none)]:opacity-100 transition-opacity';
+
 const getFaviconUrl = (url: string): string => {
   try {
     const domain = new URL(url).hostname;
@@ -30,7 +34,6 @@ export const BookmarkCard = memo<BookmarkCardProps>(({ bookmark, categoryId, onE
   const [isExpanded, setIsExpanded] = useState(false);
   
   const {
-    attributes,
     listeners,
     setNodeRef,
     transform,
@@ -57,10 +60,6 @@ export const BookmarkCard = memo<BookmarkCardProps>(({ bookmark, categoryId, onE
     [bookmark.favicon, bookmark.url]
   );
 
-  const hostname = useMemo(() => {
-    try { return new URL(bookmark.url).hostname; } catch { return bookmark.title; }
-  }, [bookmark.url, bookmark.title]);
-
   const quotaInfo = useMemo(() =>
     getQuotaInfo(bookmark),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,22 +70,27 @@ export const BookmarkCard = memo<BookmarkCardProps>(({ bookmark, categoryId, onE
     <div
       ref={setNodeRef}
       style={style}
-      {...attributes}
       {...listeners}
       className="relative hover:bg-gray-50 cursor-pointer group"
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
     >
       {/* Main bookmark row */}
-      <div 
-        className="flex items-center gap-2 py-2 px-1"
-        onClick={() => window.open(bookmark.url, '_blank')}
-      >
+      <div className="flex items-center gap-2 py-2 px-1">
+        {/* draggable={false}: keep native link drag from hijacking dnd-kit's pointer drag */}
+        <a
+          href={bookmark.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          draggable={false}
+          className="flex items-center gap-2 flex-1 min-w-0 rounded"
+        >
         <div className="flex-shrink-0 w-5 h-5">
           {faviconUrl ? (
             <img
               src={faviconUrl}
-              alt={`${hostname} favicon`}
+              alt=""
+              draggable={false}
               className="w-5 h-5 rounded-sm"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
@@ -102,39 +106,40 @@ export const BookmarkCard = memo<BookmarkCardProps>(({ bookmark, categoryId, onE
         <span className="text-sm text-gray-700 truncate flex-1">
           {bookmark.title}
         </span>
-        
-        {/* App link button - only show if appUrl exists and on hover */}
+        </a>
+
+        {/* App link - shown on hover, keyboard focus, or always on touch devices */}
         {bookmark.appUrl ? (
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              window.open(bookmark.appUrl, '_blank');
-            }}
-            className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-blue-100 rounded"
+          <a
+            href={bookmark.appUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            draggable={false}
+            className={`${revealClass} p-1 hover:bg-blue-100 rounded`}
             title="開啟應用"
+            aria-label={`開啟應用：${bookmark.title}`}
           >
             <ExternalLink size={14} className="text-blue-500" />
-          </button>
+          </a>
         ) : null}
-        
-        {/* Edit button - only show on hover */}
+
+        {/* Edit button */}
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onEdit?.(bookmark.id);
-          }}
-          className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-gray-200 rounded"
+          type="button"
+          onClick={() => onEdit?.(bookmark.id)}
+          className={`${revealClass} p-1 hover:bg-gray-200 rounded`}
+          aria-label={`編輯：${bookmark.title}`}
         >
           <Pencil size={14} className="text-gray-500" />
         </button>
 
         {/* Expand/Collapse button */}
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsExpanded(!isExpanded);
-          }}
-          className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-gray-200 rounded"
+          type="button"
+          onClick={() => setIsExpanded(!isExpanded)}
+          className={`${revealClass} p-1 hover:bg-gray-200 rounded`}
+          aria-label={`詳細資訊：${bookmark.title}`}
+          aria-expanded={isExpanded}
         >
           {isExpanded ? (
             <ChevronUp size={14} className="text-gray-400" />

@@ -1,14 +1,14 @@
 import packageJSON from '../../package.json';
 
 export function Footer() {
-  const { name, version, author, homepage } = packageJSON;
+  const { name, version, author, repository } = packageJSON;
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="w-full py-4 px-4">
       <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-gray-500">
         <a
-          href={`${homepage}/blob/main/LICENSE`}
+          href={`${repository.url}/blob/main/LICENSE`}
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-gray-700 transition-colors"
@@ -26,14 +26,8 @@ export function Footer() {
           >
             {author.name}
           </a>
-          <a
-            href={`${homepage}/releases/tag/v${version}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-1 opacity-70 hover:opacity-100 transition-opacity"
-          >
-            v{version}
-          </a>
+          {/* Plain text: the repo has no releases, so any release link would 404 */}
+          <span className="ml-1">v{version}</span>
         </div>
       </div>
     </footer>

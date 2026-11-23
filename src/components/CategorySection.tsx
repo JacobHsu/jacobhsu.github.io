@@ -4,7 +4,7 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { Category } from '../types';
 import { BookmarkCard } from './BookmarkCard';
 import { EditBookmarkModal } from './EditBookmarkModal';
-import { Link, MoreHorizontal } from 'lucide-react';
+import { Link } from 'lucide-react';
 
 interface CategorySectionProps {
   category: Category;
@@ -53,13 +53,6 @@ export const CategorySection: React.FC<CategorySectionProps> = ({ category, onAd
                     aria-label={`新增書籤到 ${category.title}`}
                   >
                     <Link size={14} className="text-gray-500" />
-                  </button>
-                  <button
-                    type="button"
-                    className="p-1 hover:bg-gray-100 rounded"
-                    aria-label={`更多：${category.title}`}
-                  >
-                    <MoreHorizontal size={14} className="text-gray-500" />
                   </button>
                 </div>
               </div>

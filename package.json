@@ -9,6 +9,10 @@
     "email": "jacob.hsu.tw@gmail.com"
   },
   "homepage": "https://jacobhsu.github.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JacobHsu/jacobhsu.github.io"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

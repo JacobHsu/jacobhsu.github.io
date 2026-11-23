@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useId } from 'react';
 import { useBookmarkStore } from '../stores/bookmarkStore';
 import { Bookmark } from '../types';
 import { X, Trash2 } from 'lucide-react';
@@ -15,23 +15,28 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({ bookmark, 
   const [description, setDescription] = useState(bookmark.description || '');
   const [appUrl, setAppUrl] = useState(bookmark.appUrl || '');
   const { updateBookmark, removeBookmark, getFaviconUrl } = useBookmarkStore();
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const firstFieldRef = useRef<HTMLInputElement>(null);
+  const id = useId();
 
   const faviconUrl = getFaviconUrl(url);
 
+  // Native modal: inert page, focus containment, Esc, and focus return to the opener.
+  // Guard against StrictMode running this twice (showModal throws if already open).
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
+    const dialog = dialogRef.current;
+    if (dialog && !dialog.open) {
+      dialog.showModal();
+      firstFieldRef.current?.focus();
+    }
+  }, []);
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [onClose]);
+  // Every close path (Esc, buttons, submit, delete) goes through dialog.close(); onClose fires from the close event
+  const closeDialog = () => dialogRef.current?.close();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!url.trim()) return;
 
     updateBookmark(categoryId, bookmark.id, {
@@ -41,13 +46,13 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({ bookmark, 
       appUrl: appUrl.trim() || undefined,
     });
 
-    onClose();
+    closeDialog();
   };
 
   const handleDelete = () => {
     if (confirm('確定要刪除這個書籤嗎？')) {
       removeBookmark(categoryId, bookmark.id);
-      onClose();
+      closeDialog();
     }
   };
 
@@ -66,12 +71,16 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({ bookmark, 
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
+    <dialog
+      ref={dialogRef}
+      onClose={onClose}
+      aria-labelledby={`${id}-heading`}
+      className="p-0 bg-white rounded-lg shadow-xl w-full max-w-md backdrop:bg-black/50"
+    >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <div className="flex items-center gap-2">
-            <h2 className="text-lg font-medium text-gray-800">編輯書籤</h2>
+            <h2 id={`${id}-heading`} className="text-lg font-medium text-gray-800">編輯書籤</h2>
             {faviconUrl ? (
               <img
                 src={faviconUrl}
@@ -90,15 +99,19 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({ bookmark, 
           </div>
           <div className="flex items-center gap-2">
             <button
+              type="button"
               onClick={handleDelete}
               className="text-red-500 hover:text-red-700 transition-colors p-1"
               title="刪除書籤"
+              aria-label="刪除書籤"
             >
               <Trash2 size={18} />
             </button>
             <button
-              onClick={onClose}
+              type="button"
+              onClick={closeDialog}
               className="text-gray-400 hover:text-gray-600 transition-colors"
+              aria-label="關閉"
             >
               <X size={20} />
             </button>
@@ -109,25 +122,30 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({ bookmark, 
         <form onSubmit={handleSubmit} className="p-4 space-y-4">
           {/* Title field */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">標題</label>
+            <label htmlFor={`${id}-title`} className="block text-sm font-medium text-gray-700 mb-1">標題</label>
             <input
+              ref={firstFieldRef}
+              id={`${id}-title`}
               type="text"
               placeholder="書籤標題"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className="w-full px-3 py-2 border border-blue-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              autoFocus
             />
           </div>
 
           {/* URL field */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">網址</label>
+            <label htmlFor={`${id}-url`} className="block text-sm font-medium text-gray-700 mb-1">網址</label>
             <input
+              id={`${id}-url`}
               type="url"
               placeholder="https://example.com"
               value={url}
               onChange={handleUrlChange}
+              autoCorrect="off"
+              autoCapitalize="none"
+              spellCheck={false}
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               required
             />
@@ -135,8 +153,9 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({ bookmark, 
 
           {/* Description field */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">描述</label>
+            <label htmlFor={`${id}-description`} className="block text-sm font-medium text-gray-700 mb-1">描述</label>
             <input
+              id={`${id}-description`}
               type="text"
               placeholder="書籤描述（可選）"
               value={description}
@@ -147,22 +166,27 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({ bookmark, 
 
           {/* App URL field */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">應用連結</label>
+            <label htmlFor={`${id}-app-url`} className="block text-sm font-medium text-gray-700 mb-1">應用連結</label>
             <input
+              id={`${id}-app-url`}
               type="url"
               placeholder="https://example.com/app（可選）"
               value={appUrl}
               onChange={(e) => setAppUrl(e.target.value)}
+              autoCorrect="off"
+              autoCapitalize="none"
+              spellCheck={false}
+              aria-describedby={`${id}-app-url-hint`}
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
-            <p className="text-xs text-gray-500 mt-1">額外的應用或示例連結，會顯示為藍色按鈕</p>
+            <p id={`${id}-app-url-hint`} className="text-xs text-gray-500 mt-1">額外的應用或示例連結，會顯示為藍色按鈕</p>
           </div>
 
           {/* Actions */}
           <div className="flex justify-between items-center pt-4">
             <button
               type="button"
-              onClick={onClose}
+              onClick={closeDialog}
               className="text-sm text-gray-600 hover:text-gray-800 transition-colors"
             >
               取消編輯
@@ -170,7 +194,7 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({ bookmark, 
             <div className="flex gap-2">
               <button
                 type="button"
-                onClick={onClose}
+                onClick={closeDialog}
                 className="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50 transition-colors"
               >
                 取消
@@ -184,7 +208,6 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({ bookmark, 
             </div>
           </div>
         </form>
-      </div>
-    </div>
+    </dialog>
   );
 };

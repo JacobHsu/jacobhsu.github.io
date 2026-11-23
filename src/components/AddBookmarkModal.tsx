@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useId } from 'react';
 import { useBookmarkStore } from '../stores/bookmarkStore';
 import { X } from 'lucide-react';
 
@@ -12,34 +12,39 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ categoryId, 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const { addBookmark, getFaviconUrl } = useBookmarkStore();
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const firstFieldRef = useRef<HTMLInputElement>(null);
+  const id = useId();
 
   const faviconUrl = url ? getFaviconUrl(url) : '';
 
+  // Native modal: inert page, focus containment, Esc, and focus return to the opener.
+  // Guard against StrictMode running this twice (showModal throws if already open).
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
+    const dialog = dialogRef.current;
+    if (dialog && !dialog.open) {
+      dialog.showModal();
+      firstFieldRef.current?.focus();
+    }
+  }, []);
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [onClose]);
+  // Every close path (Esc, buttons, submit) goes through dialog.close(); onClose fires from the close event
+  const closeDialog = () => dialogRef.current?.close();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!url.trim()) return;
 
     const finalTitle = title.trim() || extractTitleFromUrl(url);
-    
+
     addBookmark(categoryId, {
       title: finalTitle,
       url: url.trim(),
       description: description.trim() || undefined,
     });
 
-    onClose();
+    closeDialog();
   };
 
   const extractTitleFromUrl = (url: string): string => {
@@ -54,7 +59,7 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ categoryId, 
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newUrl = e.target.value;
     setUrl(newUrl);
-    
+
     if (!title && newUrl) {
       setTitle(extractTitleFromUrl(newUrl));
     }
@@ -67,12 +72,16 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ categoryId, 
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
+    <dialog
+      ref={dialogRef}
+      onClose={onClose}
+      aria-labelledby={`${id}-heading`}
+      className="p-0 bg-white rounded-lg shadow-xl w-full max-w-md backdrop:bg-black/50"
+    >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <div className="flex items-center gap-2">
-            <h2 className="text-lg font-medium text-gray-800">編輯書籤</h2>
+            <h2 id={`${id}-heading`} className="text-lg font-medium text-gray-800">編輯書籤</h2>
             {faviconUrl ? (
               <img
                 src={faviconUrl}
@@ -90,8 +99,10 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ categoryId, 
             </div>
           </div>
           <button
-            onClick={onClose}
+            type="button"
+            onClick={closeDialog}
             className="text-gray-400 hover:text-gray-600 transition-colors"
+            aria-label="關閉"
           >
             <X size={20} />
           </button>
@@ -101,40 +112,51 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ categoryId, 
         <form onSubmit={handleSubmit} className="p-4 space-y-4">
           {/* Title field */}
           <div>
+            <label htmlFor={`${id}-title`} className="block text-sm font-medium text-gray-700 mb-1">標題</label>
             <input
+              ref={firstFieldRef}
+              id={`${id}-title`}
               type="text"
               placeholder="kuse.ai"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className="w-full px-3 py-2 border border-blue-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              autoFocus
             />
           </div>
 
           {/* URL field */}
-          <div className="flex gap-2">
-            <div className="flex-1">
-              <input
-                type="url"
-                placeholder="https://app.kuse.ai/"
-                value={url}
-                onChange={handleUrlChange}
-                onBlur={handleUrlBlur}
-                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                required
-              />
+          <div>
+            <label htmlFor={`${id}-url`} className="block text-sm font-medium text-gray-700 mb-1">網址</label>
+            <div className="flex gap-2">
+              <div className="flex-1">
+                <input
+                  id={`${id}-url`}
+                  type="url"
+                  placeholder="https://app.kuse.ai/"
+                  value={url}
+                  onChange={handleUrlChange}
+                  onBlur={handleUrlBlur}
+                  autoCorrect="off"
+                  autoCapitalize="none"
+                  spellCheck={false}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  required
+                />
+              </div>
+              <button
+                type="button"
+                className="px-3 py-2 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50"
+              >
+                更多選項
+              </button>
             </div>
-            <button
-              type="button"
-              className="px-3 py-2 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50"
-            >
-              更多選項
-            </button>
           </div>
 
           {/* Description field */}
           <div>
+            <label htmlFor={`${id}-description`} className="block text-sm font-medium text-gray-700 mb-1">描述</label>
             <input
+              id={`${id}-description`}
               type="text"
               placeholder="描述"
               value={description}
@@ -145,19 +167,22 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ categoryId, 
 
           {/* Tags field */}
           <div>
+            <label htmlFor={`${id}-tags`} className="block text-sm font-medium text-gray-700 mb-1">標籤</label>
             <input
+              id={`${id}-tags`}
               type="text"
               placeholder="標籤"
+              aria-describedby={`${id}-tags-hint`}
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
-            <div className="text-xs text-gray-500 mt-1">100 個字元以內</div>
+            <div id={`${id}-tags-hint`} className="text-xs text-gray-500 mt-1">100 個字元以內</div>
           </div>
 
           {/* Actions */}
           <div className="flex justify-between items-center pt-4">
             <button
               type="button"
-              onClick={onClose}
+              onClick={closeDialog}
               className="text-sm text-gray-600 hover:text-gray-800 transition-colors"
             >
               取消編輯
@@ -165,7 +190,7 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ categoryId, 
             <div className="flex gap-2">
               <button
                 type="button"
-                onClick={onClose}
+                onClick={closeDialog}
                 className="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50 transition-colors"
               >
                 取消
@@ -179,7 +204,6 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ categoryId, 
             </div>
           </div>
         </form>
-      </div>
-    </div>
+    </dialog>
   );
 };
